@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
-Route::get('/tes', function () {
-    return view('welcome');
-});
+Route::view('/pembelian','pembelian');
+Route::view('/barang','barang');
 
