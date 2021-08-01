@@ -14,10 +14,12 @@ class CreateSalesProductsTable extends Migration
     public function up()
     {
         Schema::create('sales_products', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('sale_id')->constrained('sales');
-            $table->foreignId('product_id')->constrained('products');
+            $table->uuid('id');
+            $table->primary('id');
+            $table->foreignUuid('sale_id')->constrained('sales');
+            $table->foreignUuid('product_id')->constrained('products');
             $table->integer('quantity');
+            $table->integer('price');
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
         });

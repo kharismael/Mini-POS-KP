@@ -14,9 +14,12 @@ class CreateDistrictsTable extends Migration
     public function up()
     {
         Schema::create('districts', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('regency_id')->constrained('regencies');
+            $table->uuid('id');
+            $table->primary('id');
+            $table->string('regency_id', 36);
+            $table->foreign('regency_id')->references('id')->on('regencies');
             $table->string('name')->unique();
+            $table->string('status', 50)->default('active');
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
         });

@@ -14,10 +14,11 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('supplier_id')->constrained('suppliers');
+            $table->uuid('id');
+            $table->primary('id');
+            $table->foreignUuid('supplier_id')->constrained('suppliers');
             $table->string('name');
-            $table->string('price');
+            $table->string('category');
             $table->string('sku');
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();

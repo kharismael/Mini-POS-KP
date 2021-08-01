@@ -14,11 +14,12 @@ class CreateSuppliersTable extends Migration
     public function up()
     {
         Schema::create('suppliers', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id');
+            $table->primary('id');
             $table->string('name');
             $table->string('telp');
             $table->string('addess');
-            $table->foreignId('village_id')->constrained('villages');
+            $table->foreignUuid('village_id')->constrained('villages');
             $table->timestamp('created-at');
             $table->timestamp('updated-at');
         });

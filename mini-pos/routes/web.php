@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::get('/tes', function () {
-    return view('welcome');
+Route::get('/about', function () {
+    return view('about');
 });
 
+Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
