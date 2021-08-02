@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +25,17 @@ Route::get('/about', function () {
 });
 
 Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
+
+
+Route::middleware('auth')->group(function(){//Route untuk halaman yang wajib login dulu
+    Route::post('logout',LogoutController::class)->name('logout');
+});
+
+Route::middleware('guest')->group(function(){//Route untuk halaman yang dilarang dikunjungi ketika user sudah login
+    Route::get('register',[RegistrationController::class,'create'])->name('register');
+    Route::post('register',[RegistrationController::class,'store'])->name('register');
+
+    Route::get('login',[LoginController::class,'create'])->name('login');
+    Route::post('login',[LoginController::class,'store'])->name('login');
+
+});
