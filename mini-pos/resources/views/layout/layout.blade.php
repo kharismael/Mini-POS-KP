@@ -187,8 +187,15 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script>
   $('.tablebarang').DataTable();
-  $(document).ready(function(){
-    $('#birth-date').mask('00/00/0000');
+  $(function () {
+    $('.selectpicker').selectpicker();
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+    
 });
 </script>
 

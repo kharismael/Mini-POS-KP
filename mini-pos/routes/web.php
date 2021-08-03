@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('login');
 });
 
+Route::view('/home','dashboard');
 Route::view('/pembelian','pembelian');
 Route::view('/barang','barang');
+Route::view('/supplier','supplier');
+Route::view('/outlet','outlet');
+Route::view('/mutasi','mutasi');
 
