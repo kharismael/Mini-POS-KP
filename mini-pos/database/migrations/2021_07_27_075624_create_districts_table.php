@@ -20,8 +20,7 @@ class CreateDistrictsTable extends Migration
             $table->foreign('regency_id')->references('id')->on('regencies');
             $table->string('name')->unique();
             $table->string('status', 50)->default('active');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

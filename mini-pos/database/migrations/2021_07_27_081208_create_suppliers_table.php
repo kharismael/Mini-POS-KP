@@ -20,8 +20,7 @@ class CreateSuppliersTable extends Migration
             $table->string('telp');
             $table->string('addess');
             $table->foreignUuid('village_id')->constrained('villages');
-            $table->timestamp('created-at');
-            $table->timestamp('updated-at');
+            $table->timestamps();
         });
     }
 

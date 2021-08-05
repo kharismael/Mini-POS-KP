@@ -21,8 +21,7 @@ class CreateVillagesTable extends Migration
             $table->string('name');
             $table->string('postal code', 36);
             $table->string('status', 50)->default('active');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

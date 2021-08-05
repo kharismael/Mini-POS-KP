@@ -20,8 +20,7 @@ class CreateStocksTable extends Migration
             $table->foreignUuid('purchases_id')->constrained('purchases');
             $table->foreignUuid('sale_id')->constrained('sales');
             $table->string('quantity');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegistrationController;
@@ -26,8 +27,10 @@ Route::get('/about', function () {
 
 Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
 
+Route::get('/location',[LocationController::class,'show']);
 
-Route::middleware('auth')->group(function(){//Route untuk halaman yang wajib login dulu
+
+Route::middleware('auth')->group(function(){ //Route untuk halaman yang wajib login dulu
     Route::post('logout',LogoutController::class)->name('logout');
 });
 

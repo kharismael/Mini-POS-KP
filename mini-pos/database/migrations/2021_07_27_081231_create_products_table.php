@@ -20,8 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('category');
             $table->string('sku');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 
