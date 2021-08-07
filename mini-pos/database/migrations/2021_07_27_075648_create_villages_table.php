@@ -17,12 +17,10 @@ class CreateVillagesTable extends Migration
             $table->uuid('id');
             $table->primary('id');
             $table->string('district_id', 36);
-            $table->foreign('district_id')->references('id')->on('districts');
             $table->string('name');
             $table->string('postal code', 36);
             $table->string('status', 50)->default('active');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

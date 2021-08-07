@@ -19,10 +19,8 @@ class CreateCustomersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('addess');
-            $table->foreignUuid('village_id')->constrained('villages');
             $table->string('telp');
-            $table->timestamp('created-at');
-            $table->timestamp('updated-at');
+            $table->timestamps();
         });
     }
 
