@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\village;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VillageController extends Controller
 {
@@ -14,7 +15,6 @@ class VillageController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
