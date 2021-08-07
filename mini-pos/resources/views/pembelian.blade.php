@@ -12,15 +12,38 @@
         <div class="card-body">
         <div class="row">
             <div class="col">
-                  <div class="form-group row">
-                    <label for="input_kategori" class="col-sm-4 col-form-label">Pilih Supplier</label>
-                    <div class="col-sm-7">
-                        <select class="custom-select">
-                            <option>PT Supplier 1</option>
-                            <option>PT Supplier 2</option>
-                          </select>
-                    </div>
+              <div class="form-group row">
+                <label for="input_kategori" class="col-sm-4 col-form-label">Pilih Supplier</label>
+                <div class="col-sm-7">
+                    <select class="custom-select">
+                        <option>PT Supplier 1</option>
+                        <option>PT Supplier 2</option>
+                      </select>
                 </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group row">
+                <label for="input_nama" class="col-sm-4 col-form-label">No. Invoice</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" id="input_nama" placeholder="No. Invoice">
+                </div>
+              </div>
+          </div>
+        </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="container mb-2">
+      <button type="button" class="btn btn-primary"> <i class="fa fa-plus"></i>  Tambah Daftar Pembelian</button>
+    </div><br><hr/><br>
+
+    <div class="container mt-1">
+      <form>
+        <div class="card-body">
+        <div class="row">           
+            <div class="col">
                 <div class="form-group row">
                     <label for="input_kode" class="col-sm-4 col-form-label">Kode Barang</label>
                     <div class="col-sm-7">
@@ -57,12 +80,6 @@
                 </div>
             </div>
             <div class="col">
-                <div class="form-group row">
-                  <label for="input_nama" class="col-sm-4 col-form-label">No. Invoice</label>
-                  <div class="col-sm-7">
-                    <input type="text" class="form-control" id="input_nama" placeholder="No. Invoice">
-                  </div>
-                </div>
                 <div class="form-group row">
                     <label for="input_hargabeli" class="col-sm-4 col-form-label">Harga Beli Satuan</label>
                     <div class="col-sm-7">
@@ -104,9 +121,11 @@
         </div>
       </form>
     </div>
+
     <div class="container mb-2">
         <button type="button" class="btn btn-primary"> <i class="fa fa-plus"></i>  Tambah Daftar Pembelian</button>
     </div><br><hr/><br>
+
     <div class="container mb-1 mt-4">
     <table class="table table-striped table-bordered tablebarang" cellspacing="0" width="100%">
         <thead>
