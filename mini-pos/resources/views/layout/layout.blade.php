@@ -80,11 +80,18 @@
         </a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="#" role="button">
-          <i class="fas fa-sign-out-alt"></i>
-        </a>
-      </li>  
+
+      <!-- Logout button -->
+      @if (Auth::check())
+        <li class="nav-item">
+          <form action="{{route('logout')}}" method="post">
+            @csrf
+            <button type="submit" class="btn btn-danger">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+          </form>
+        </li>  
+        @endif   
     <!--
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">

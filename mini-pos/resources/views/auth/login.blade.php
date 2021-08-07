@@ -35,23 +35,39 @@
   <div class="card" >
     <div class="card-body login-card-body" style="border-radius: 60%">
       <p class="login-box-msg">Login Admin</p>
-      <form action="#" method="post">
+      <form action="{{route('login')}}" method="post">
+        @csrf
+
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Username">
+          <input type="login" value="{{ old('login') }}" name="login" id="login" class="form-control" placeholder="Username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
+
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" name="password" id="password" class="form-control">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
-        </div><br>
+        </div>
+        
+        @error('password')
+        <div class="text-danger mt-2">
+            {{$message}}
+        </div>
+        @enderror    
+        @error('login')
+          <div class="text-danger mt-2">
+              {{$message}}
+          </div>
+        @enderror 
+           
+        <br>
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">

@@ -14,8 +14,9 @@ class CreateSalesTable extends Migration
     public function up()
     {
         Schema::create('sales', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('customer_id')->constrained('customers');
+            $table->uuid('id');
+            $table->primary('id');
+            $table->foreignUuid('customer_id')->constrained('customers');
             $table->string('invoice');
             $table->timestamp('transaction_date');
             $table->integer('price_total');

@@ -15,7 +15,7 @@ class CreateOutletsTable extends Migration
     {
         Schema::create('outlets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('village_id')->constrained('villages');
+            $table->foreignUuid('village_id')->constrained('villages');
             $table->string('name');
             $table->string('telp');
             $table->string('address');

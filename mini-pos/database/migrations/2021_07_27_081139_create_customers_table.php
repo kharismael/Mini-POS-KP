@@ -14,11 +14,12 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id');
+            $table->primary('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('addess');
-            $table->foreignId('village_id')->constrained('villages');
+            $table->foreignUuid('village_id')->constrained('villages');
             $table->string('telp');
             $table->timestamp('created-at');
             $table->timestamp('updated-at');

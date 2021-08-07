@@ -14,9 +14,13 @@ class CreateRegenciesTable extends Migration
     public function up()
     {
         Schema::create('regencies', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('province_id')->constrained('provinces');
+            $table->uuid('id');
+            $table->primary('id');
+            $table->string('province_id', 36);
+            $table->foreign('province_id')->references('id')->on('provinces');
+            $table->string('code', 50);
             $table->string('name')->unique();
+            $table->string('status', 50)->default('active');
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
         });
