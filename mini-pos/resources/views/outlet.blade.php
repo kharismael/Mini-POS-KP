@@ -8,7 +8,7 @@
 <section class="content">
 <div class="container-fluid">
     <div class="container mb-4 mt-2">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-plus"></i> Tambah Daftar Outlet</button>
+    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-plus"></i> Tambah Daftar Outlet</button>
     </div>
     <div class="container mb-1 mt-1">
     <table class="table table-striped table-bordered tablebarang" cellspacing="0" width="100%">
@@ -39,7 +39,6 @@
                 <td>0821-8977-2223</td>
                 <td>Jl.Magiwo 23, Kec.Diwek, Kab.Jombang, Jawa Timur</td>
                 <td>
-                    <button type="button" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                 </td>
@@ -126,8 +125,8 @@
             </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-primary">Tambah Outlet</button>
+          <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+          <button type="button" class="btn btn-dark">Tambah Outlet</button>
         </div>
       </div>
     </div>

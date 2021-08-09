@@ -7,6 +7,7 @@
 @section('main_content')
 <section class="content">
 <div class="container-fluid">
+  
     <div class="container mt-1">
       <form>
         <div class="card-body">
@@ -36,8 +37,7 @@
     </div>
 
     <div class="container mb-2">
-      <button type="button" class="btn btn-primary"> <i class="fa fa-plus"></i>  Tambah Daftar Pembelian</button>
-    </div><br><hr/><br>
+    </div><hr/>
 
     <div class="container mt-1">
       <form>
@@ -123,7 +123,7 @@
     </div>
 
     <div class="container mb-2">
-        <button type="button" class="btn btn-primary"> <i class="fa fa-plus"></i>  Tambah Daftar Pembelian</button>
+        <button type="button" class="btn btn-dark"> <i class="fa fa-plus"></i>  Tambah ke Daftar Pembelian</button>
     </div><br><hr/><br>
 
     <div class="container mb-1 mt-4">
@@ -170,7 +170,6 @@
                 <td>10</td>
                 <td>1.000.000</td>
                 <td>
-                    <button type="button" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                 </td>
@@ -186,7 +185,6 @@
                 <td>10</td>
                 <td>900.000</td>
                 <td>
-                    <button type="button" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                 </td>
@@ -196,7 +194,7 @@
     </div>
     <br>
     <div class="container mb-2">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-plus"></i>  Checkout</button>
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-shopping-cart"></i>  Checkout</button>
     </div><br>
 </div>
 </section>
@@ -216,8 +214,8 @@
         Yakin untuk melakukan checkout ?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary">Lanjutkan</button>
+        <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-dark">Lanjutkan</button>
       </div>
     </div>
   </div>

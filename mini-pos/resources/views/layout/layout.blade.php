@@ -8,6 +8,8 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Google Font: Poppins -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('template')}}/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -28,14 +30,40 @@
   <link rel="stylesheet" href="{{asset('template')}}/plugins/summernote/summernote-bs4.min.css">
 
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-  
+
 </head>
+
+<style>
+  body  {
+    font-family: 'Poppins';
+  }
+  .bg-custom{
+    background-color: #222831 !important;
+    border-color: #222831;
+  }
+  .cl-custom{
+    color: #222831 !important;
+  }
+  .cl-custom-1{
+    color: #289672 !important;
+  }
+  .cl-custom-2{
+    color: #FF6C00 !important;
+  }
+  .cl-custom-3{
+    color: #86003C !important;
+  }
+  .cl-custom-4{
+    color: #521477 !important;
+  }
+</style>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{asset('template')}}/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="{{asset('template')}}/img/AdminLTELogo.png" alt="AdminLTELogo" height="160" width="160">
   </div>
 
   <!-- Navbar -->
@@ -46,7 +74,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="/dashboard" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -80,13 +108,12 @@
         </a>
       </li>
 
-
       <!-- Logout button -->
       @if (Auth::check())
         <li class="nav-item">
           <form action="{{route('logout')}}" method="post">
             @csrf
-            <button type="submit" class="btn btn-danger">
+            <button type="submit" class="btn btn-dark">
               <i class="fas fa-sign-out-alt"></i> Logout
             </button>
           </form>
@@ -119,7 +146,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
               <li class="breadcrumb-item active">@yield('judul')</li>
             </ol>
           </div><!-- /.col -->

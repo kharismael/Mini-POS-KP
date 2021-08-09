@@ -26,14 +26,11 @@ Route::view('/mutasi','mutasi');
 */
 
 
-Route::get('/', function () {
-    return view('auth.login');
-});
-
 //Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
 
 Route::middleware('auth')->group(function(){//Route untuk halaman yang wajib login dulu
     Route::post('logout',LogoutController::class)->name('logout');
+    Route::view('/','dashboard');
     Route::view('/dashboard','dashboard');
     Route::view('/pembelian','pembelian');
     Route::view('/barang','barang');
