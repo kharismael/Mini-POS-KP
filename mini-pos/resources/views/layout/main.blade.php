@@ -38,14 +38,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/about">About</a>
                         </li>
-                        @if (Auth::check())
-                            <li class="nav-item">
-                                <form action="{{route('logout')}}" method="post">
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger">Logout</button>
-                                </form>
-                            </li>
-                        @endif
                     </ul>
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

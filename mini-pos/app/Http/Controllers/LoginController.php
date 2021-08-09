@@ -28,7 +28,7 @@ class LoginController extends Controller
         ]);
     
         if (Auth::attempt($request->only($login_type, 'password'))) {
-            return redirect('/');
+            return redirect('/dashboard');
         }
     
         return redirect()->back()
