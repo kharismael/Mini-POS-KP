@@ -54,7 +54,7 @@
           <li class="nav-header">MITRA</li>
           <li class="nav-item">
             <a href="/customer" class="nav-link">
-              <i class="nav-icon fas fa-store"></i>
+              <i class="nav-icon fas fa-user-friends"></i>
               <p>
                 Customer
               </p>
