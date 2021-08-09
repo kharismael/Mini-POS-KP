@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function(){//Route untuk halaman yang wajib log
     Route::view('/supplier','supplier');
     Route::view('/outlet','outlet');
     Route::view('/mutasi','mutasi');
+    Route::view('/penjualan','penjualan');
     Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
 });
 
