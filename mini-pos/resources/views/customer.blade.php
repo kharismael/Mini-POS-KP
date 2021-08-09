@@ -8,7 +8,7 @@
 <section class="content">
 <div class="container-fluid">
     <div class="container mb-4 mt-2">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-plus"></i> Tambah Daftar Outlet</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-plus"></i> Tambah Daftar Customer</button>
     </div>
     <div class="container mb-1 mt-1">
     <table class="table table-striped table-bordered tablebarang" cellspacing="0" width="100%">
@@ -71,8 +71,8 @@
                 <div class="card-body"> 
                     <div class="form-row">
                         <div class="form-group col-md-8">
-                          <label for="out_name">Nama Outlet</label>
-                          <input type="text" class="form-control" id="sup_name" placeholder="Nama Outlet">
+                          <label for="out_name">Nama Customer</label>
+                          <input type="text" class="form-control" id="sup_name" placeholder="Nama Customer">
                         </div>
                         <div class="form-group col-md-4">
                           <label for="out_no">No. Telepon</label>
@@ -132,7 +132,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-primary">Tambah Outlet</button>
+          <button type="button" class="btn btn-primary">Tambah Customer</button>
         </div>
       </div>
     </div>
