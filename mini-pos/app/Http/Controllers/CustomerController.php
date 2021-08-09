@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\customer;
 use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
@@ -14,7 +15,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = DB::table('customers')->get();
+        $customer = DB::table('customers')
+            ->Join('villages', 'customers.village_id', '=', 'villages.id')
+            ->select('villages.name as village_name', 'customers.name as name', 'customers.email as email', 'customers.addess as addess', 'customers.telp as telp')->get();
         return view('customer.index', ['customer' => $customer]);
     }
 
