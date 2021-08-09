@@ -21,40 +21,20 @@
                 <th>Aksi</th>
             </tr>
         </thead>
- 
-        <tfoot>
-            <tr>
-                <th>No</th>
-                <th>Nama Supplier</th>
-                <th>Telepon</th>
-                <th>Alamat</th>
-                <th>Aksi</th>
-            </tr>
-        </tfoot>
- 
         <tbody>
+          @foreach ($suppliers as $supplier)
             <tr>
-                <td>1</td>
-                <td>PT Sejahtera Abadi</td>
-                <td>0821-8977-2223</td>
-                <td>Jl.IR Soekarno 122, Kec.Baturaja, Kab.Jombang, Jawa Timur</td>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$supplier->supplier_name}}</td>
+                <td>{{$supplier->telp}}</td>
+                <td>{{$supplier->address}}, {{$supplier->village_name}}, {{$supplier->district_name}}, {{$supplier->regency_name}}, Prov. {{$supplier->province_name}}</td>
                 <td>
                     <button type="button" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                 </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>PT Abadi Sejahtera</td>
-                <td>0821-4977-2111</td>
-                <td>Jl.Brawijaya 26, Kec.Pungging, Kab.Mojokerto, Jawa Timur</td>
-                <td>
-                    <button type="button" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                </td>
-            </tr>
+          @endforeach
         </tbody>
     </table>
     </div>
@@ -91,7 +71,7 @@
                           <input type="text" class="form-control" id="sup_addres" placeholder="Alamat">
                         </div>
                         <div class="form-group col-md-4">
-                          <label for="sup_desa">Desa/Dusun</label>
+                          <label for="sup_desa">Provinsi</label>
                           <select class="form-control selectpicker" id="select-country" data-live-search="true">
                             <option data-tokens="Jawa Timur">Jawa Timur</option>
                             <option data-tokens="Jawa Barat">Jawa Barat</option>
@@ -103,7 +83,7 @@
                       </div>
                       <div class="form-row">
                         <div class="form-group col-md-4">
-                          <label for="sup_kec">Kecamatan</label>
+                          <label for="sup_kec">Kota/kabupaten</label>
                           <select class="form-control selectpicker" id="select-country" data-live-search="true">
                             <option data-tokens="Jawa Timur">Jawa Timur</option>
                             <option data-tokens="Jawa Barat">Jawa Barat</option>
@@ -113,7 +93,7 @@
                           </select>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="sup_kota">Kota/Kabupaten</label>
+                            <label for="sup_kota">Kecamatan</label>
                             <select class="form-control selectpicker" id="select-country" data-live-search="true">
                               <option data-tokens="Jawa Timur">Jawa Timur</option>
                               <option data-tokens="Jawa Barat">Jawa Barat</option>
@@ -123,7 +103,7 @@
                             </select>
                           </div>
                           <div class="form-group col-md-4">
-                            <label for="sup_prov">Provinsi</label>
+                            <label for="sup_prov">Desa</label>
                             <select class="form-control selectpicker" id="select-country" data-live-search="true">
                               <option data-tokens="Jawa Timur">Jawa Timur</option>
                               <option data-tokens="Jawa Barat">Jawa Barat</option>

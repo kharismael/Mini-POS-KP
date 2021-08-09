@@ -4,6 +4,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,9 +41,11 @@ Route::middleware('auth')->group(function(){ //Route untuk halaman yang wajib lo
     Route::view('/dashboard','dashboard');
     Route::view('/pembelian','pembelian');
     Route::view('/barang','barang');
-    Route::view('/supplier','supplier');
     Route::view('/outlet','outlet');
     Route::view('/mutasi','mutasi');
+
+    Route::get('supplier',[SupplierController::class,'index']);
+    Route::post('supplier',[SupplierController::class,'create']);
 });
 
 Route::middleware('guest')->group(function(){//Route untuk halaman yang dilarang dikunjungi ketika user sudah login
