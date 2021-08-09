@@ -16,12 +16,10 @@ class CreatePurchasesTable extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->uuid('id');
             $table->primary('id');
-            $table->foreignUuid('supplier_id')->constrained('suppliers');
             $table->string('invoice');
             $table->timestamp('transaction_date');
             $table->integer('price_total');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

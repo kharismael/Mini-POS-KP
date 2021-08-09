@@ -50,6 +50,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/customer" class="nav-link">
+              <i class="nav-icon fas fa-user-friends"></i>
+              <p>
+                Customer
+              </p>
+            </a>
+          </li>
 
           <li class="nav-header">MITRA</li>
           <li class="nav-item">
@@ -60,6 +68,7 @@
               </p>
             </a>
           </li>
+          
           <li class="nav-item">
             <a href="/supplier" class="nav-link">
               <i class="nav-icon fas fa-warehouse"></i>

@@ -1,22 +1,24 @@
+
 @extends('layout.layout')
 
-@section('judul','Outlet')
+@section('judul','Customer')
 
 
 @section('main_content')
 <section class="content">
 <div class="container-fluid">
     <div class="container mb-4 mt-2">
-    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-plus"></i> Tambah Daftar Outlet</button>
+    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-plus"></i> Tambah Daftar Customer</button>
     </div>
     <div class="container mb-1 mt-1">
     <table class="table table-striped table-bordered tablebarang" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama Outlet</th>
+                <th>Nama Customer</th>
                 <th>Telepon</th>
                 <th>Alamat</th>
+                <th>Email</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -24,24 +26,28 @@
         <tfoot>
             <tr>
                 <th>No</th>
-                <th>Nama Outlet</th>
+                <th>Nama Customer</th>
                 <th>Telepon</th>
                 <th>Alamat</th>
+                <th>Email</th>
                 <th>Aksi</th>
             </tr>
         </tfoot>
  
         <tbody>
+             @foreach($customer as $cust)      
             <tr>
-                <td>1</td>
-                <td>Outlet Penjualan 1</td>
-                <td>0821-8977-2223</td>
-                <td>Jl.Magiwo 23, Kec.Diwek, Kab.Jombang, Jawa Timur</td>
+                <th scopes="row">{{ $loop->iteration}}</th>
+                <td>{{ $cust->name }}</td>
+                <td>{{ $cust->telp }}</td>
+                <td>{{ $cust->address }}</td>
+                <td>{{ $cust->email }}</td>
                 <td>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
     </div>
@@ -54,7 +60,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Tambah Daftar Outlet</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Tambah Daftar Customer</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -64,8 +70,8 @@
                 <div class="card-body"> 
                     <div class="form-row">
                         <div class="form-group col-md-8">
-                          <label for="out_name">Nama Outlet</label>
-                          <input type="text" class="form-control" id="sup_name" placeholder="Nama Outlet">
+                          <label for="out_name">Nama Customer</label>
+                          <input type="text" class="form-control" id="sup_name" placeholder="Nama Customer">
                         </div>
                         <div class="form-group col-md-4">
                           <label for="out_no">No. Telepon</label>

@@ -16,12 +16,9 @@ class CreateSalesProductsTable extends Migration
         Schema::create('sales_products', function (Blueprint $table) {
             $table->uuid('id');
             $table->primary('id');
-            $table->foreignUuid('sale_id')->constrained('sales');
-            $table->foreignUuid('product_id')->constrained('products');
             $table->integer('quantity');
             $table->integer('price');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 
