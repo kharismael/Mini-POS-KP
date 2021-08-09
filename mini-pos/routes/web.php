@@ -32,20 +32,19 @@ Route::get('/', function () {
 
 //Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
 
-Route::middleware('auth')->group(function(){//Route untuk halaman yang wajib login dulu
-    Route::post('logout',LogoutController::class)->name('logout');
-    Route::view('/dashboard','dashboard');
-    Route::view('/pembelian','pembelian');
-    Route::view('/barang','barang');
-    Route::view('/supplier','supplier');
-    Route::view('/outlet','outlet');
-    Route::view('/mutasi','mutasi');
+Route::middleware('auth')->group(function () { //Route untuk halaman yang wajib login dulu
+    Route::post('logout', LogoutController::class)->name('logout');
+    Route::view('/dashboard', 'dashboard');
+    Route::view('/pembelian', 'pembelian');
+    Route::view('/barang', 'barang');
+    Route::view('/supplier', 'supplier');
+    Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
+    Route::view('/mutasi', 'mutasi');
 });
 
-Route::middleware('guest')->group(function(){//Route untuk halaman yang dilarang dikunjungi ketika user sudah login
+Route::middleware('guest')->group(function () { //Route untuk halaman yang dilarang dikunjungi ketika user sudah login
     //Route::get('register',[RegistrationController::class,'create'])->name('register');
     //Route::post('register',[RegistrationController::class,'store'])->name('register');
-    Route::get('login',[LoginController::class,'create'])->name('login');
-    Route::post('login',[LoginController::class,'store'])->name('login');
-
+    Route::get('login', [LoginController::class, 'create'])->name('login');
+    Route::post('login', [LoginController::class, 'store'])->name('login');
 });

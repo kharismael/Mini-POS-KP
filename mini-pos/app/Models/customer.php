@@ -11,4 +11,11 @@ class customer extends Model
     public $incrementing = false;
     protected $keyType = 'uuid';
     use HasFactory;
+    protected $fillable = [
+        'id',
+        'name',
+        'email',
+        'address',
+        'telp',
+    ];
 }

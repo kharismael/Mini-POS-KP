@@ -53,10 +53,10 @@
 
           <li class="nav-header">MITRA</li>
           <li class="nav-item">
-            <a href="/outlet" class="nav-link">
+            <a href="/customer" class="nav-link">
               <i class="nav-icon fas fa-store"></i>
               <p>
-                Outlet
+                Customer
               </p>
             </a>
           </li>

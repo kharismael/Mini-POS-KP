@@ -1,7 +1,7 @@
 
 @extends('layout.layout')
 
-@section('judul','Outlet')
+@section('judul','Customer')
 
 
 @section('main_content')
@@ -15,9 +15,10 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama Outlet</th>
+                <th>Nama Customer</th>
                 <th>Telepon</th>
                 <th>Alamat</th>
+                <th>Email</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -25,25 +26,29 @@
         <tfoot>
             <tr>
                 <th>No</th>
-                <th>Nama Outlet</th>
+                <th>Nama Customer</th>
                 <th>Telepon</th>
                 <th>Alamat</th>
+                <th>Email</th>
                 <th>Aksi</th>
             </tr>
         </tfoot>
  
         <tbody>
+             @foreach($customer as $cust)      
             <tr>
-                <td>1</td>
-                <td>Outlet Penjualan 1</td>
-                <td>0821-8977-2223</td>
-                <td>Jl.Magiwo 23, Kec.Diwek, Kab.Jombang, Jawa Timur</td>
+                <th scopes="row">{{ $loop->iteration}}</th>
+                <td>{{ $cust->name }}</td>
+                <td>{{ $cust->telp }}</td>
+                <td>{{ $cust->address }}</td>
+                <td>{{ $cust->email }}</td>
                 <td>
                     <button type="button" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
     </div>
@@ -56,7 +61,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Tambah Daftar Outlet</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Tambah Daftar Customer</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

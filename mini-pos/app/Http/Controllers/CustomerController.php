@@ -16,9 +16,10 @@ class CustomerController extends Controller
     public function index()
     {
         $customer = DB::table('customers')
-            ->Join('villages', 'customers.village_id', '=', 'villages.id')
-            ->select('villages.name as village_name', 'customers.name as name', 'customers.email as email', 'customers.addess as addess', 'customers.telp as telp')->get();
-        return view('customer.index', ['customer' => $customer]);
+            //->Join('villages', 'customers.village_id', '=', 'villages.id')
+            //->select('villages.name as village_name', 'customers.name as name', 'customers.email as email', 'customers.address as addess', 'customers.telp as telp')->get();
+            ->select('customers.name as name', 'customers.email as email', 'customers.address as address', 'customers.telp as telp')->get();
+        return view('customer', ['customer' => $customer]);
     }
 
     /**
