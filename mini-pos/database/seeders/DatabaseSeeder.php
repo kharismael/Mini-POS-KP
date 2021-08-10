@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\customer;
+use App\Models\product;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -34,6 +35,15 @@ class DatabaseSeeder extends Seeder
             'email' => 'saya@google.com',
             'address' => 'Jl. makmur 119 Surabaya',
             'telp' => '0819998653',
+        ]);
+
+        product::create([
+            'id' => (string) Str::uuid(),
+            'name' => 'Beras cap Lele',
+            'category' => 'Sembako',
+            'sku' => 'BRS-LELE',
+            'cost' => '104000',
+            'price' => '115000',
         ]);
     }
 }

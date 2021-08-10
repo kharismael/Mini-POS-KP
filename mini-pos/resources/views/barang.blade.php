@@ -39,45 +39,21 @@
         </tfoot>
  
         <tbody>
+            @foreach ($products as $product)
             <tr>
-                <td>1</td>
-                <td>KMJBIRU-L</td>
-                <td>Kemeja Biru Size-L</td>
-                <td>Kemeja</td>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $product->sku }}-L</td>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->category }}</td>
                 <td>0</td>
-                <td>120.000</td>
-                <td><span class="badge badge-success">10.000</span></td>
+                <td>Rp. {{ $product->price }}</td>
+                <td><span class="badge badge-success"> Rp.{{ $product->price - $product->cost }}</span></td>
                 <td>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                 </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>KMJBIRU-M</td>
-                <td>Kemeja Biru Size-M</td>
-                <td>Kemeja</td>
-                <td>0</td>
-                <td>110.000</td>
-                <td><span class="badge badge-success">10.000</span></td>
-                <td>
-                    <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>KMJBIRU-S</td>
-                <td>Kemeja Biru Size-S</td>
-                <td>Kemeja</td>
-                <td>0</td>
-                <td>100.000</td>
-                <td><span class="badge badge-success">10.000</span></td>
-                <td>
-                    <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                </td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
     </div>
@@ -96,26 +72,27 @@
           </button>
         </div>
         <div class="modal-body">
-            <form>
+            <form method="post" action="{{route('createProduct')}}">
+              @csrf
                 <div class="card-body">
                 <div class="row">
                     <div class="col">
                         <div class="form-group row">
-                            <label for="input_kode" class="col-sm-4 col-form-label">Kode Barang</label>
+                            <label for="sku" class="col-sm-4 col-form-label">Kode Barang</label>
                             <div class="col-sm-7">
-                              <input type="text" class="form-control" id="input_kode" placeholder="Kode Barang">
+                              <input type="text" class="form-control" id="sku" placeholder="Kode Barang" name="sku">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="input_nama" class="col-sm-4 col-form-label">Nama Barang</label>
+                            <label for="name" class="col-sm-4 col-form-label">Nama Barang</label>
                             <div class="col-sm-7">
-                              <input type="text" class="form-control" id="input_nama" placeholder="Nama Barang">
+                              <input type="text" class="form-control" id="name" placeholder="Nama Barang" name="name">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="input_kategori" class="col-sm-4 col-form-label">Kategori</label>
+                            <label for="category" class="col-sm-4 col-form-label">Kategori</label>
                             <div class="col-sm-7">
-                                <select class="custom-select">
+                                <select class="custom-select" id="category" name="category">
                                     <option>Sembako</option>
                                     <option>Snack</option>
                                     <option>Minuman</option>
@@ -126,13 +103,13 @@
                     </div>
                     <div class="col">
                         <div class="form-group row">
-                            <label for="input_hargajual" class="col-sm-4 col-form-label">Harga Jual</label>
+                            <label for="price" class="col-sm-4 col-form-label">Harga Jual</label>
                             <div class="col-sm-7">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <span class="input-group-text">Rp</span>
                                     </div>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="price" name="price">
                                     <div class="input-group-append">
                                       <span class="input-group-text">.00</span>
                                     </div>
@@ -140,13 +117,13 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="input_hargabeli" class="col-sm-4 col-form-label">Harga Beli</label>
+                            <label for="cost" class="col-sm-4 col-form-label">Harga Beli</label>
                             <div class="col-sm-7">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                       <span class="input-group-text">Rp</span>
                                     </div>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="cost" name="cost">
                                     <div class="input-group-append">
                                       <span class="input-group-text">.00</span>
                                     </div>
@@ -169,14 +146,13 @@
                         </div>
                     </div>
                 </div>
-
                 </div>
-              </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-light" data-dismiss="modal">Batal Tambahkan</button>
           <button type="button" class="btn btn-dark">Tambah Barang</button>
         </div>
+      </form>
       </div>
     </div>
 </div>

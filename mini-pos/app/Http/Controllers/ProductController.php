@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = product::all();
+        return view('barang',['products'=>$products]);
     }
 
     /**
@@ -35,7 +37,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        product::create([
+            'id'=>(string) Str::uuid(),
+            'name'=>$request->name,
+            'category'=>$request->category,
+            'sku'=>$request->sku,
+            'cost'=>$request->cost,
+            'price'=>$request->price,
+        ]);        
+        return redirect('/barang');
     }
 
     /**

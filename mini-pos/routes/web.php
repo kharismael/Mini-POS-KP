@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,12 +35,14 @@ Route::middleware('auth')->group(function(){//Route untuk halaman yang wajib log
     Route::view('/','dashboard');
     Route::view('/dashboard','dashboard');
     Route::view('/pembelian','pembelian');
-    Route::view('/barang','barang');
+    //Halaman Barang
+    Route::get('/barang', [ProductController::class, 'index']);
+    Route::post('/barang', [ProductController::class, 'store'])->name('createProduct');
     Route::view('/supplier','supplier');
     Route::view('/outlet','outlet');
     Route::view('/mutasi','mutasi');
     Route::view('/penjualan','penjualan');
-    Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
+    Route::get('/customer', [CustomerController::class, 'index']);
 });
 
 Route::middleware('guest')->group(function () { //Route untuk halaman yang dilarang dikunjungi ketika user sudah login
