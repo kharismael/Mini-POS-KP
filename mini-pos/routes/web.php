@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProductController;
@@ -28,9 +29,9 @@ Route::view('/mutasi','mutasi');
 */
 
 
-//Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
 
-Route::middleware('auth')->group(function(){//Route untuk halaman yang wajib login dulu
+
+Route::middleware('auth')->group(function(){ //Route untuk halaman yang wajib login dulu
     Route::post('logout',LogoutController::class)->name('logout');
     Route::view('/','dashboard');
     Route::view('/dashboard','dashboard');
