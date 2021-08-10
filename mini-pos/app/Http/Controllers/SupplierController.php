@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\province;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -23,14 +24,16 @@ class SupplierController extends Controller
                             'provinces.name as province_name')
                     ->orderBy('suppliers.updated_at')
                     ->get();
-        return view('supplier',compact('suppliers'));
+
+        $provinsi = province::all();
+        return view('supplier',compact('suppliers'),compact('provinsi'));
     }
 
     public function create(Request $request)
     {
         request()->validate([
             'name'=>['required','string','min:3'],
-            'telp'=>['required','digits:10'],
+            'telp'=>['required','digits_between:10,15'],
             'address'=>['required','string','min:3'],
             'village_id'=>['required','uuid'],
         ]);
@@ -42,7 +45,6 @@ class SupplierController extends Controller
             'address'=>$request->address,
             'village_id'=>$request->village_id,
         ]);
-        
-        return redirect('/supplier');
+        return back();
     }
 }

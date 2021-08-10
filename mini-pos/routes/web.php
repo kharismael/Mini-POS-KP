@@ -45,7 +45,10 @@ Route::middleware('auth')->group(function(){ //Route untuk halaman yang wajib lo
     Route::view('/mutasi','mutasi');
 
     Route::get('supplier',[SupplierController::class,'index']);
-    Route::post('supplier',[SupplierController::class,'create']);
+    Route::post('supplier',[SupplierController::class,'create'])->name('createSupplier');
+    Route::get('regency',[LocationController::class,'getRegency'])->name('getRegency');
+    Route::get('district',[LocationController::class,'getDistrict'])->name('getDistrict');
+    Route::get('village',[LocationController::class,'getVillage'])->name('getVillage');
 });
 
 Route::middleware('guest')->group(function(){//Route untuk halaman yang dilarang dikunjungi ketika user sudah login
