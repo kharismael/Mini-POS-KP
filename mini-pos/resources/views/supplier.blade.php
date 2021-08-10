@@ -72,7 +72,7 @@
                           <div class="text-danger mt-2">
                               {{$message}}
                           </div>
-                      @enderror
+                          @enderror
                         </div>
                       </div>
                       <div class="form-row">
