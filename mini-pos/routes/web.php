@@ -29,6 +29,7 @@ Route::view('/mutasi','mutasi');
 */
 
 
+<<<<<<< HEAD
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -56,6 +57,25 @@ Route::middleware('auth')->group(function () { //Route untuk halaman yang wajib 
     Route::get('/customer', [CustomerController::class, 'index']);
     Route::post('customer', [CustomerController::class, 'create'])->name('createCustomer');
     Route::view('/penjualan', 'penjualan');
+=======
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+
+
+Route::middleware('auth')->group(function () { //Route untuk halaman yang wajib login dulu
+    Route::post('logout', LogoutController::class)->name('logout');
+    Route::view('/', 'dashboard');
+    Route::view('/dashboard', 'dashboard');
+    Route::view('/pembelian', 'pembelian');
+    Route::view('/barang', 'barang');
+    Route::view('/outlet', 'outlet');
+    Route::view('/mutasi', 'mutasi');
+    Route::view('/penjualan', 'penjualan');
+    Route::get('/customer', [CustomerController::class, 'index']);
+    Route::get('supplier', [SupplierController::class, 'index']);
+    Route::post('supplier', [SupplierController::class, 'create']);
+>>>>>>> 836108f1bbdaa464c1fc100d8598728638d66d9f
 });
 
 Route::middleware('guest')->group(function () { //Route untuk halaman yang dilarang dikunjungi ketika user sudah login

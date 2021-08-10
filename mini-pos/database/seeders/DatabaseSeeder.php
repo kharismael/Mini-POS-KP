@@ -50,7 +50,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'saya@google.com',
             'address' => 'Jl. makmur 119 Surabaya',
             'telp' => '0819998653',
+<<<<<<< HEAD
             'village_id' => '0002a5be-d893-4bd9-8e54-eb3b960f9d50'
+=======
+            'village_id' => '0057d7f5-5985-4906-bb66-2e97bb39b7dc'
+>>>>>>> 836108f1bbdaa464c1fc100d8598728638d66d9f
         ]);
     }
 }

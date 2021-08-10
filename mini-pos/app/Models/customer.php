@@ -17,6 +17,10 @@ class customer extends Model
         'email',
         'address',
         'telp',
+<<<<<<< HEAD
         'village_id',
+=======
+        'vilalge_id'
+>>>>>>> 836108f1bbdaa464c1fc100d8598728638d66d9f
     ];
 }
