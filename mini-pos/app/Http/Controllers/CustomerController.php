@@ -22,8 +22,10 @@ class CustomerController extends Controller
             ->join('provinces', 'provinces.id', '=', 'regencies.province_id')
             ->select(
                 'customers.name as name',
+                'customers.id as id',
                 'telp',
                 'address',
+                'email',
                 'villages.name as village_name',
                 'districts.name as district_name',
                 'regencies.name as regency_name',
@@ -46,6 +48,7 @@ class CustomerController extends Controller
             'name' => ['required', 'string', 'min:3'],
             'telp' => ['required', 'digits_between:10,15'],
             'address' => ['required', 'string', 'min:3'],
+            'email' => ['required', 'email', 'min:3'],
             'village_id' => ['required', 'uuid'],
         ]);
 
@@ -54,6 +57,7 @@ class CustomerController extends Controller
             'name' => $request->name,
             'telp' => $request->telp,
             'address' => $request->address,
+            'email' => $request->email,
             'village_id' => $request->village_id,
         ]);
         return back();
@@ -110,8 +114,9 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(customer $customer)
     {
-        //
+        customer::destroy($customer->id);
+        return redirect('customer')->with('status', 'Customer berhasil dihapus');
     }
 }

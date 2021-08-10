@@ -43,8 +43,12 @@
                 <td>{{ $cust->address }}, {{$cust->village_name}}, {{$cust->district_name}}, {{$cust->regency_name}}, Prov. {{$cust->province_name}}</td>
                 <td>{{ $cust->email }}</td>
                 <td>
-                    <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    <button type="submit" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
+                    <form action="{{ $cust->id }}" method="post">
+                      @method('delete')
+                      @csrf
+                      <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -73,7 +77,7 @@
                       <div class="form-row">
                           <div class="form-group col-md-8">
                             <label for="cust_name">Nama Customer</label>
-                            <input type="text" class="form-control" id="cust_name" name="name" placeholder="Nama Customer">
+                            <input type="text" class="form-control" id="cust_name" name="name" value="{{ old('name') }}" placeholder="Nama Customer">
                             @error('name')
                             <div class="text-danger mt-2">
                                 {{$message}}
@@ -82,7 +86,7 @@
                           </div>
                           <div class="form-group col-md-4">
                             <label for="cust_no">No. Telepon</label>
-                            <input type="text" class="form-control" id="cust_no" name="telp" placeholder="No. Telepon">
+                            <input type="tel" class="form-control" id="cust_no" name="telp" value="{{ old('telp') }}" placeholder="No. Telepon">
                             @error('telp')
                             <div class="text-danger mt-2">
                                 {{$message}}
@@ -93,7 +97,7 @@
                         <div class="form-row">
                           <div class="form-group col-md-8">
                             <label for="cust_address">Alamat</label>
-                            <input type="text" class="form-control" id="cust_address" name="address" placeholder="Alamat">
+                            <input type="text" class="form-control" id="cust_address" name="address" value="{{ old('address') }}" placeholder="Alamat">
                             @error('address')
                             <div class="text-danger mt-2">
                                 {{$message}}
@@ -101,17 +105,25 @@
                         @enderror
                           </div>
                           <div class="form-group col-md-4">
-                            <label for="cust_desa">Provinsi</label>
-                            <select class="form-control selectpicker" id="province_id" data-live-search="true">
-                              <option value="" selected>Choose Province</option>
-                              @foreach ($province as $prov)
-                                <option value="{{$prov->id}}">{{$prov->name}}</option>
-                              @endforeach
-                              
-                            </select>
+                            <label for="cust_no">Email</label>
+                            <input type="email" class="form-control" id="cust_email" name="email" value="{{ old('email') }}" placeholder="Email">
+                            @error('email')
+                            <div class="text-danger mt-2">
+                                {{$message}}
+                            </div>
+                            @enderror
                           </div>
                         </div>
                         <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="cust_prov">Provinsi</label>
+                              <select class="form-control selectpicker" id="province_id" data-live-search="true">
+                                <option value="" selected>Choose Province</option>
+                                @foreach ($province as $prov)
+                                  <option value="{{$prov->id}}">{{$prov->name}}</option>
+                                @endforeach
+                              </select>
+                            </div>
                           <div class="form-group col-md-4" id="regency">
                             <label for="cust_kec">Kota/kabupaten</label>
                             <select class="form-control selectpicker" id="regency_id" data-live-search="true">
@@ -124,6 +136,7 @@
                                 <option value="" selected>Choose District</option>
                               </select>
                             </div>
+                        </div>
                             <div class="form-group col-md-4">
                               <label for="cust_prov">Desa</label>
                               <select class="form-control selectpicker" id="village_id" name="village_id" data-live-search="true">
@@ -134,19 +147,14 @@
                                   {{$message}}
                               </div>
                           @enderror
-                            </div>
-                        </div>
-                  </div>
-          </div>
+                          </div>
+                    </div>
+                </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
             <button type="submit" class="btn btn-dark">Tambah Customer</button>
           </div>
-        </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-dark">Tambah Outlet</button>
+          </form>
         </div>
       </div>
     </div>
