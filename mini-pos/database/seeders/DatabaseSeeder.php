@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Supplier;
 use App\Models\User;
 use App\Models\customer;
 use Illuminate\Database\Seeder;
@@ -28,12 +29,28 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
         ]);
 
+        // Supplier::create([
+        //     'id'=>(string) Str::uuid(),
+        //     'name'=>'coba',
+        //     'telp'=>'83304923949',
+        //     'address'=>'asdjdfnjasd',
+        //     'village_id'=>'fe5a14d1-06ec-4e61-8462-83a0c7dd8b20',
+        // ]);
+        Supplier::create([
+            'id' => (string) Str::uuid(),
+            'name' => 'tesasd',
+            'telp' => '23949829432',
+            'address' => 'dfjnjvlafd',
+            'village_id' => '00007611-9128-4626-b1e7-7f2eda700590',
+        ]);
+
         customer::create([
             'id' => (string) Str::uuid(),
             'name' => 'Saya test',
             'email' => 'saya@google.com',
             'address' => 'Jl. makmur 119 Surabaya',
             'telp' => '0819998653',
+            'village_id' => '0057d7f5-5985-4906-bb66-2e97bb39b7dc'
         ]);
     }
 }

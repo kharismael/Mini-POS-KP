@@ -40,7 +40,7 @@
                 <th scopes="row">{{ $loop->iteration}}</th>
                 <td>{{ $cust->name }}</td>
                 <td>{{ $cust->telp }}</td>
-                <td>{{ $cust->address }}</td>
+                <td>{{ $cust->address }}, {{$cust->village_name}}, {{$cust->district_name}}, {{$cust->regency_name}}, Prov. {{$cust->province_name}}</td>
                 <td>{{ $cust->email }}</td>
                 <td>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>

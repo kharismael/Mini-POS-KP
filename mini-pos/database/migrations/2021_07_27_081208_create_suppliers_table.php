@@ -18,7 +18,7 @@ class CreateSuppliersTable extends Migration
             $table->primary('id');
             $table->string('name');
             $table->string('telp');
-            $table->string('addess');
+            $table->string('address');
             $table->timestamps();
         });
     }

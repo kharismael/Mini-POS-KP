@@ -18,8 +18,7 @@ class CreateProvincesTable extends Migration
             $table->primary('id');
             $table->string('name')->unique();
             $table->string('status', 50)->default('active');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 
