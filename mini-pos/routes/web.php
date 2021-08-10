@@ -4,6 +4,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,22 +37,25 @@ Route::get('/', function () {
 //Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
 
 
-Route::middleware('auth')->group(function(){ //Route untuk halaman yang wajib login dulu
-    Route::post('logout',LogoutController::class)->name('logout');
-    Route::view('/','dashboard');
-    Route::view('/dashboard','dashboard');
-    Route::view('/pembelian','pembelian');
-    Route::view('/barang','barang');
-    Route::view('/outlet','outlet');
-    Route::view('/mutasi','mutasi');
+Route::middleware('auth')->group(function () { //Route untuk halaman yang wajib login dulu
+    Route::post('logout', LogoutController::class)->name('logout');
+    Route::view('/', 'dashboard');
+    Route::view('/dashboard', 'dashboard');
+    Route::view('/pembelian', 'pembelian');
+    Route::view('/barang', 'barang');
+    Route::view('/outlet', 'outlet');
+    Route::view('/mutasi', 'mutasi');
 
-    Route::get('supplier',[SupplierController::class,'index']);
-    Route::post('supplier',[SupplierController::class,'create'])->name('createSupplier');
-    Route::get('regency',[LocationController::class,'getRegency'])->name('getRegency');
-    Route::get('district',[LocationController::class,'getDistrict'])->name('getDistrict');
-    Route::get('village',[LocationController::class,'getVillage'])->name('getVillage');
-    Route::view('/penjualan','penjualan');
-    Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
+    Route::get('supplier', [SupplierController::class, 'index']);
+    Route::post('supplier', [SupplierController::class, 'create'])->name('createSupplier');
+
+    Route::get('regency', [LocationController::class, 'getRegency'])->name('getRegency');
+    Route::get('district', [LocationController::class, 'getDistrict'])->name('getDistrict');
+    Route::get('village', [LocationController::class, 'getVillage'])->name('getVillage');
+
+    Route::get('/customer', [CustomerController::class, 'index']);
+    Route::post('customer', [CustomerController::class, 'create'])->name('createCustomer');
+    Route::view('/penjualan', 'penjualan');
 });
 
 Route::middleware('guest')->group(function () { //Route untuk halaman yang dilarang dikunjungi ketika user sudah login

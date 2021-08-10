@@ -17,5 +17,6 @@ class customer extends Model
         'email',
         'address',
         'telp',
+        'village_id',
     ];
 }

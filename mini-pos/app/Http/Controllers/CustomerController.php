@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\customer;
-use Illuminate\Support\Facades\DB;
+use App\Models\province;
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
@@ -15,11 +16,23 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = DB::table('customers')
-            //->Join('villages', 'customers.village_id', '=', 'villages.id')
-            //->select('villages.name as village_name', 'customers.name as name', 'customers.email as email', 'customers.address as addess', 'customers.telp as telp')->get();
-            ->select('customers.name as name', 'customers.email as email', 'customers.address as address', 'customers.telp as telp')->get();
-        return view('customer', ['customer' => $customer]);
+        $customer = customer::join('villages', 'villages.id', '=', 'customers.village_id')
+            ->join('districts', 'districts.id', '=', 'villages.district_id')
+            ->join('regencies', 'regencies.id', '=', 'districts.regency_id')
+            ->join('provinces', 'provinces.id', '=', 'regencies.province_id')
+            ->select(
+                'customers.name as name',
+                'telp',
+                'address',
+                'villages.name as village_name',
+                'districts.name as district_name',
+                'regencies.name as regency_name',
+                'provinces.name as province_name'
+            )
+            ->orderBy('customers.updated_at')
+            ->get();
+        $province = province::all();
+        return view('customer', compact('customer'), compact('province'));
     }
 
     /**
@@ -27,9 +40,23 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        request()->validate([
+            'name' => ['required', 'string', 'min:3'],
+            'telp' => ['required', 'digits_between:10,15'],
+            'address' => ['required', 'string', 'min:3'],
+            'village_id' => ['required', 'uuid'],
+        ]);
+
+        customer::create([
+            'id' => (string) Str::uuid(),
+            'name' => $request->name,
+            'telp' => $request->telp,
+            'address' => $request->address,
+            'village_id' => $request->village_id,
+        ]);
+        return back();
     }
 
     /**
