@@ -18,8 +18,12 @@ class CreateSuppliersTable extends Migration
             $table->primary('id');
             $table->string('name');
             $table->string('telp');
+<<<<<<< HEAD
             $table->string('address');
             $table->foreignUuid('village_id')->constrained('villages');
+=======
+            $table->string('addess');
+>>>>>>> origin/riznov
             $table->timestamps();
         });
     }

@@ -1,7 +1,7 @@
 
 @extends('layout.layout')
 
-@section('judul','Pembelian')
+@section('judul','Penjualan')
 
 
 @section('main_content')
@@ -14,11 +14,11 @@
         <div class="row">
             <div class="col">
               <div class="form-group row">
-                <label for="input_kategori" class="col-sm-4 col-form-label">Pilih Supplier</label>
+                <label for="input_kategori" class="col-sm-4 col-form-label">Pilih Customer</label>
                 <div class="col-sm-7">
                     <select class="custom-select">
-                        <option>PT Supplier 1</option>
-                        <option>PT Supplier 2</option>
+                        <option>Customer 1</option>
+                        <option>Customer 2</option>
                       </select>
                 </div>
               </div>
@@ -132,7 +132,7 @@
             <tr>
                 <th>No</th>
                 <th>No.Invoice</th>
-                <th>Supplier</th>
+                <th>Customer</th>
                 <th>SKU</th>
                 <th>Nama Barang</th>
                 <th>Kategori</th>
@@ -153,7 +153,7 @@
                 <th></th>
                 <th></th>
                 <th>Total</th>
-                <th>1.900.000</th>
+                <th>280.000</th>
                 <th></th>
             </tr>
         </tfoot>
@@ -162,13 +162,13 @@
             <tr>
                 <td>1</td>
                 <td>2001/INV/001</td>
-                <td>PT Supplier 1</td>
+                <td>Customer 1</td>
                 <td>KMJBIRU-L</td>
                 <td>Kemeja Biru Size-L</td>
                 <td>Kemeja</td>
                 <td>100.000</td>
-                <td>10</td>
-                <td>1.000.000</td>
+                <td>1</td>
+                <td>100.000</td>
                 <td>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
@@ -177,13 +177,13 @@
             <tr>
                 <td>2</td>
                 <td>2001/INV/001</td>
-                <td>PT Supplier 1</td>
+                <td>Customer 2</td>
                 <td>KMJBIRU-S</td>
                 <td>Kemeja Biru Size-S</td>
                 <td>Kemeja</td>
                 <td>90.000</td>
-                <td>10</td>
-                <td>900.000</td>
+                <td>2</td>
+                <td>180.000</td>
                 <td>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
@@ -194,7 +194,7 @@
     </div>
     <br>
     <div class="container mb-2">
-      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-shopping-cart"></i>  Checkout</button>
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-shopping-cart"></i>  Konfirmasi Checkout</button>
     </div><br>
 </div>
 </section>

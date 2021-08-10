@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\product;
 use Illuminate\Http\Request;
-use App\Models\customer;
-use Illuminate\Support\Facades\DB;
 
-class CustomerController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = DB::table('customers')
-            //->Join('villages', 'customers.village_id', '=', 'villages.id')
-            //->select('villages.name as village_name', 'customers.name as name', 'customers.email as email', 'customers.address as addess', 'customers.telp as telp')->get();
-            ->select('customers.name as name', 'customers.email as email', 'customers.address as address', 'customers.telp as telp')->get();
-        return view('customer', ['customer' => $customer]);
+        //
     }
 
     /**
@@ -46,10 +41,10 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(product $product)
     {
         //
     }
@@ -57,10 +52,10 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(product $product)
     {
         //
     }
@@ -69,10 +64,10 @@ class CustomerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, product $product)
     {
         //
     }
@@ -80,10 +75,10 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(product $product)
     {
         //
     }

@@ -17,8 +17,7 @@ class CreateDistrictsTable extends Migration
             $table->uuid('id');
             $table->primary('id');
             $table->string('regency_id', 36);
-            $table->foreign('regency_id')->references('id')->on('regencies');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('status', 50)->default('active');
             $table->timestamps();
         });

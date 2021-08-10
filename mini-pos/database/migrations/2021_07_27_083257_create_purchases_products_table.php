@@ -16,8 +16,6 @@ class CreatePurchasesProductsTable extends Migration
         Schema::create('purchases_products', function (Blueprint $table) {
             $table->uuid('id');
             $table->primary('id');
-            $table->foreignUuid('purchases_id')->constrained('purchases');
-            $table->foreignUuid('product_id')->constrained('products');
             $table->integer('quantity');
             $table->integer('cost');
             $table->timestamps();

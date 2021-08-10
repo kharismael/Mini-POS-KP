@@ -16,7 +16,6 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->uuid('id');
             $table->primary('id');
-            $table->foreignUuid('supplier_id')->constrained('suppliers');
             $table->string('name');
             $table->string('category');
             $table->string('sku');

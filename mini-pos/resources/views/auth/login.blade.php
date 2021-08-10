@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in</title>
+  <title>MiniPos | Login</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('template')}}/plugins/fontawesome-free/css/all.min.css">
   <!-- icheck bootstrap -->
@@ -22,18 +22,18 @@
       background-repeat: no-repeat;
       background-size: cover;
       position: relative;
-
+      font-family: 'Poppins';
     }
-    </style>
+  </style>
 
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Mini</b>POS-KP</a>
+      <span class="brand-text font-weight-light">Mini<b>POS</b> KP</span>
   </div>
   <!-- /.login-logo -->
   <div class="card" >
-    <div class="card-body login-card-body" style="border-radius: 60%">
+    <div class="card-body" style="border-radius: 60%">
       <p class="login-box-msg">Login Admin</p>
       <form action="{{route('login')}}" method="post">
         @csrf
@@ -48,7 +48,7 @@
         </div>
 
         <div class="input-group mb-3">
-          <input type="password" name="password" id="password" class="form-control">
+          <input type="password" name="password" id="password" class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -70,7 +70,7 @@
         <br>
         <div class="row">
           <div class="col-8">
-            <div class="icheck-primary">
+            <div class="icheck-dark">
               <input type="checkbox" id="remember">
               <label for="remember">
                 Ingat saya
@@ -79,7 +79,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
+            <button type="submit" class="btn btn-dark btn-block">Login</button>
           </div>
           <!-- /.col -->
         </div>

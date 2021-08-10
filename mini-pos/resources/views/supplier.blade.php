@@ -8,7 +8,7 @@
 <section class="content">
 <div class="container-fluid">
     <div class="container mb-4 mt-2">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-plus"></i> Tambah Daftar Supplier</button>
+    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-plus"></i> Tambah Daftar Supplier</button>
     </div>
     <div class="container mb-1 mt-1">
     <table class="table table-striped table-bordered tablebarang" cellspacing="0" width="100%">
@@ -24,12 +24,28 @@
         <tbody>
           @foreach ($suppliers as $supplier)
             <tr>
+<<<<<<< HEAD
                 <td>{{$loop->iteration}}</td>
                 <td>{{$supplier->supplier_name}}</td>
                 <td>{{$supplier->telp}}</td>
                 <td>{{$supplier->address}}, {{$supplier->village_name}}, {{$supplier->district_name}}, {{$supplier->regency_name}}, Prov. {{$supplier->province_name}}</td>
+=======
+                <td>1</td>
+                <td>PT Sejahtera Abadi</td>
+                <td>0821-8977-2223</td>
+                <td>Jl.IR Soekarno 122, Kec.Baturaja, Kab.Jombang, Jawa Timur</td>
                 <td>
-                    <button type="button" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
+                    <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>PT Abadi Sejahtera</td>
+                <td>0821-4977-2111</td>
+                <td>Jl.Brawijaya 26, Kec.Pungging, Kab.Mojokerto, Jawa Timur</td>
+>>>>>>> origin/riznov
+                <td>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                 </td>
@@ -125,11 +141,11 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Tambah Supplier</button>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-primary">Tambah Supplier</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+          <button type="button" class="btn btn-dark">Tambah Supplier</button>
+        </div>
       </div>
     </div>
 </div>

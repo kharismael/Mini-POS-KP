@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class regency extends Model
 {
-    use HasFactory;
-    protected $primaryKey = 'province_id';
+    protected $primaryKey = 'id';
     public $incrementing = false;
+    protected $keyType = 'uuid';
+    use HasFactory;
 }

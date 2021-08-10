@@ -32,12 +32,13 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/location',[LocationController::class,'show']);
+//Route::get('/location',[LocationController::class,'show']);
 //Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
 
 
 Route::middleware('auth')->group(function(){ //Route untuk halaman yang wajib login dulu
     Route::post('logout',LogoutController::class)->name('logout');
+    Route::view('/','dashboard');
     Route::view('/dashboard','dashboard');
     Route::view('/pembelian','pembelian');
     Route::view('/barang','barang');
@@ -49,12 +50,13 @@ Route::middleware('auth')->group(function(){ //Route untuk halaman yang wajib lo
     Route::get('regency',[LocationController::class,'getRegency'])->name('getRegency');
     Route::get('district',[LocationController::class,'getDistrict'])->name('getDistrict');
     Route::get('village',[LocationController::class,'getVillage'])->name('getVillage');
+    Route::view('/penjualan','penjualan');
+    Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
 });
 
-Route::middleware('guest')->group(function(){//Route untuk halaman yang dilarang dikunjungi ketika user sudah login
+Route::middleware('guest')->group(function () { //Route untuk halaman yang dilarang dikunjungi ketika user sudah login
     //Route::get('register',[RegistrationController::class,'create'])->name('register');
     //Route::post('register',[RegistrationController::class,'store'])->name('register');
-    Route::get('login',[LoginController::class,'create'])->name('login');
-    Route::post('login',[LoginController::class,'store'])->name('login');
-
+    Route::get('login', [LoginController::class, 'create'])->name('login');
+    Route::post('login', [LoginController::class, 'store'])->name('login');
 });

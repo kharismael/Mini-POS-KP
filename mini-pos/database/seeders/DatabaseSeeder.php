@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Supplier;
 use App\Models\User;
+use App\Models\customer;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +42,14 @@ class DatabaseSeeder extends Seeder
             'telp'=>'23949829432',
             'address'=>'dfjnjvlafd',
             'village_id'=>'00007611-9128-4626-b1e7-7f2eda700590',
+        ]);
+
+        customer::create([
+            'id' => (string) Str::uuid(),
+            'name' => 'Saya test',
+            'email' => 'saya@google.com',
+            'address' => 'Jl. makmur 119 Surabaya',
+            'telp' => '0819998653',
         ]);
     }
 }
