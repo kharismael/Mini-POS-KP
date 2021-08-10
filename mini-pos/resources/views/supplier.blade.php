@@ -24,27 +24,10 @@
         <tbody>
           @foreach ($suppliers as $supplier)
             <tr>
-<<<<<<< HEAD
                 <td>{{$loop->iteration}}</td>
                 <td>{{$supplier->supplier_name}}</td>
                 <td>{{$supplier->telp}}</td>
                 <td>{{$supplier->address}}, {{$supplier->village_name}}, {{$supplier->district_name}}, {{$supplier->regency_name}}, Prov. {{$supplier->province_name}}</td>
-=======
-                <td>1</td>
-                <td>PT Sejahtera Abadi</td>
-                <td>0821-8977-2223</td>
-                <td>Jl.IR Soekarno 122, Kec.Baturaja, Kab.Jombang, Jawa Timur</td>
-                <td>
-                    <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>PT Abadi Sejahtera</td>
-                <td>0821-4977-2111</td>
-                <td>Jl.Brawijaya 26, Kec.Pungging, Kab.Mojokerto, Jawa Timur</td>
->>>>>>> origin/riznov
                 <td>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
@@ -68,9 +51,9 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-            <form action="{{route('createSupplier')}}" method="post">
-              @csrf
+        <form action="{{route('createSupplier')}}" method="post">
+          @csrf
+            <div class="modal-body">
               <div class="card-body"> 
                     <div class="form-row">
                         <div class="form-group col-md-8">
@@ -139,13 +122,12 @@
                           </div>
                       </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Tambah Supplier</button>
-            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-dark">Tambah Supplier</button>
+          <button type="submit" class="btn btn-dark">Tambah Supplier</button>
         </div>
+      </form>
       </div>
     </div>
 </div>
