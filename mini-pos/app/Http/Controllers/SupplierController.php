@@ -15,13 +15,15 @@ class SupplierController extends Controller
                     ->join('districts','districts.id','=','villages.district_id')
                     ->join('regencies','regencies.id','=','districts.regency_id')
                     ->join('provinces','provinces.id','=','regencies.province_id')
-                    ->select('suppliers.name as supplier_name',
-                            'telp',
-                            'address',
-                            'villages.name as village_name',
-                            'districts.name as district_name',
-                            'regencies.name as regency_name',
-                            'provinces.name as province_name')
+                    ->select(
+                        'suppliers.id as id',
+                        'suppliers.name as supplier_name',
+                        'telp',
+                        'address',
+                        'villages.name as village_name',
+                        'districts.name as district_name',
+                        'regencies.name as regency_name',
+                        'provinces.name as province_name')
                     ->orderBy('suppliers.updated_at')
                     ->get();
 
@@ -45,6 +47,13 @@ class SupplierController extends Controller
             'address'=>$request->address,
             'village_id'=>$request->village_id,
         ]);
+        return back();
+    }
+
+    public function delete($id)
+    {
+        Supplier::where('id',$id)->first()->delete();
+
         return back();
     }
 }

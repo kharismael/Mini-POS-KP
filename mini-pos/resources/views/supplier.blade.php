@@ -30,8 +30,12 @@
                 <td>{{$supplier->address}}, {{$supplier->village_name}}, {{$supplier->district_name}}, {{$supplier->regency_name}}, Prov. {{$supplier->province_name}}</td>
                 <td>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                </td>
+                    <form action="/supplier/{{$supplier->id}}" method="post">
+                      @method("delete")
+                      @csrf
+                      <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    </form>
+                    </td>
             </tr>
           @endforeach
         </tbody>
@@ -58,32 +62,32 @@
                     <div class="form-row">
                         <div class="form-group col-md-8">
                           <label for="sup_name">Nama Supplier</label>
-                          <input type="text" class="form-control" id="sup_name" name="name" placeholder="Nama Supplier">
+                          <input type="text" value="{{ old('name') }}" class="form-control" id="sup_name" name="name" placeholder="Nama Supplier">
                           @error('name')
-                          <div class="text-danger mt-2">
-                              {{$message}}
-                          </div>
+                            <div class="text-danger mt-2">
+                                {{$message}}
+                            </div>
                           @enderror
                         </div>
                         <div class="form-group col-md-4">
                           <label for="sup_no">No. Telepon</label>
-                          <input type="text" class="form-control" id="sup_no" name="telp" placeholder="No. Telepon">
+                          <input type="text" value="{{ old('telp') }}" class="form-control" id="sup_no" name="telp" placeholder="No. Telepon">
                           @error('telp')
-                          <div class="text-danger mt-2">
-                              {{$message}}
-                          </div>
+                            <div class="text-danger mt-2">
+                                {{$message}}
+                            </div>
                           @enderror
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-md-8">
                           <label for="sup_addres">Alamat</label>
-                          <input type="text" class="form-control" id="sup_addres" name="address" placeholder="Alamat">
+                          <input type="text" value="{{ old('address') }}" class="form-control" id="sup_addres" name="address" placeholder="Alamat">
                           @error('address')
-                          <div class="text-danger mt-2">
-                              {{$message}}
-                          </div>
-                      @enderror
+                            <div class="text-danger mt-2">
+                                {{$message}}
+                            </div>
+                          @enderror
                         </div>
                         <div class="form-group col-md-4">
                           <label for="sup_desa">Provinsi</label>
@@ -115,10 +119,10 @@
                               <option value="" selected>Choose Village</option>
                             </select>
                             @error('village_id')
-                            <div class="text-danger mt-2">
-                                {{$message}}
-                            </div>
-                        @enderror
+                              <div class="text-danger mt-2">
+                                  {{$message}}
+                              </div>
+                            @enderror
                           </div>
                       </div>
                 </div>
