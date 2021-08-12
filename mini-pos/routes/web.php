@@ -6,6 +6,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,8 @@ Route::view('/mutasi','mutasi');
 */
 
 
+//Route::get('/location',[LocationController::class,'show']);
+//Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
 
 
 Route::middleware('auth')->group(function(){ //Route untuk halaman yang wajib login dulu
@@ -39,9 +42,18 @@ Route::middleware('auth')->group(function(){ //Route untuk halaman yang wajib lo
     //Halaman Barang
     Route::get('/barang', [ProductController::class, 'index']);
     Route::post('/barang', [ProductController::class, 'store'])->name('createProduct');
-    Route::view('/supplier','supplier');
+    Route::delete('/barang/{id}', [ProductController::class, 'delete'])->name('deleteProduct');
+
+    //Halaman Supplier
+    Route::get('supplier',[SupplierController::class,'index']);
+    Route::post('supplier',[SupplierController::class,'create'])->name('createSupplier');
+
     Route::view('/outlet','outlet');
     Route::view('/mutasi','mutasi');
+
+    Route::get('regency',[LocationController::class,'getRegency'])->name('getRegency');
+    Route::get('district',[LocationController::class,'getDistrict'])->name('getDistrict');
+    Route::get('village',[LocationController::class,'getVillage'])->name('getVillage');
     Route::view('/penjualan','penjualan');
     Route::get('/customer', [CustomerController::class, 'index']);
 });

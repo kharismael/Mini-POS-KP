@@ -18,11 +18,8 @@ class CreateSuppliersTable extends Migration
             $table->primary('id');
             $table->string('name');
             $table->string('telp');
-            $table->string('addess');
-<<<<<<< HEAD
-=======
+            $table->string('address');
             $table->foreignUuid('village_id')->constrained('villages');
->>>>>>> origin/arief_yoga
             $table->timestamps();
         });
     }

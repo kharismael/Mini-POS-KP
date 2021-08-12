@@ -50,7 +50,12 @@
                 <td><span class="badge badge-success"> Rp.{{ $product->price - $product->cost }}</span></td>
                 <td>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    <button type="button" class="btn btn-danger btn-sm btn-delete"
+                      data-id="{{ $product['id'] }}"
+                      data-name="{{ $product['name'] }}"
+                      data-toggle="modal"
+                      data-target="#deleteModal">  
+                    <i class="fa fa-trash"></i></button>
                 </td>
             </tr>
             @endforeach
@@ -150,7 +155,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-light" data-dismiss="modal">Batal Tambahkan</button>
-          <button type="button" class="btn btn-dark">Tambah Barang</button>
+          <button type="submit" class="btn btn-dark">Tambah Barang</button>
         </div>
       </form>
       </div>
@@ -158,7 +163,40 @@
 </div>
 
 <!-- modal delete barang -->
-
-
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Delete Barang</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="#" id="delete-product-form" method="post">
+        <div class="modal-body">
+                @method('delete')
+                @csrf
+                <span class="text-center">Yakin Menghapus Data?</span>
+        </div>
+        <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+              <button type="submit" class="btn btn-dark">Hapus Barang</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
 @endsection
+
+
+@section('scripts')
+  <script>
+    $('.btn-delete').click(function()){
+        $('#delete-product-form').attr('action', '{{ route('deleteProduct','1')}}/' + $(self).data('id'))
+        //$('#delete-product-name').val($(self).data('name'))
+    })
+  </script>
+@endsection
+
+
 

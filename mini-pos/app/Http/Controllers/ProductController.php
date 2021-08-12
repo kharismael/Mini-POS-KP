@@ -59,6 +59,14 @@ class ProductController extends Controller
         //
     }
 
+    public function delete($id)
+    {
+        $product = product::find($id);
+        $product->delete();
+        return redirect('/barang')->with('success','Barang Terhapus!');
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *

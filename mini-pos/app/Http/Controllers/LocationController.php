@@ -2,20 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\district;
+use App\Models\regency;
+use App\Models\village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
 {
-    public function show()
+    public function getRegency(Request $request)
     {
-        $data = DB::table('villages')
-                ->join('districts','districts.id','=','villages.district_id')
-                ->join('regencies','regencies.id','=','districts.regency_id')
-                ->join('provinces','provinces.id','=','regencies.province_id')
-                ->select('villages.name as village_name','districts.name as district_name','regencies.name as regency_name','provinces.name as province_name')
-                ->limit(100)
-                ->get();
-        return view('location',compact('data'));
+        $regency = regency::where('province_id',$request->province_id)
+        ->pluck('name','id');
+
+        return response()->json($regency);
+    }
+
+    public function getDistrict(Request $request)
+    {
+        $district = district::where('regency_id',$request->regency_id)
+        ->pluck('name','id');
+
+        return response()->json($district);
+    }
+
+    public function getVillage(Request $request)
+    {
+        $village = village::where('district_id',$request->district_id)
+        ->pluck('name','id');
+
+        return response()->json($village);
     }
 }

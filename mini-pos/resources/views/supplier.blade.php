@@ -21,38 +21,19 @@
                 <th>Aksi</th>
             </tr>
         </thead>
- 
-        <tfoot>
-            <tr>
-                <th>No</th>
-                <th>Nama Supplier</th>
-                <th>Telepon</th>
-                <th>Alamat</th>
-                <th>Aksi</th>
-            </tr>
-        </tfoot>
- 
         <tbody>
+          @foreach ($suppliers as $supplier)
             <tr>
-                <td>1</td>
-                <td>PT Sejahtera Abadi</td>
-                <td>0821-8977-2223</td>
-                <td>Jl.IR Soekarno 122, Kec.Baturaja, Kab.Jombang, Jawa Timur</td>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$supplier->supplier_name}}</td>
+                <td>{{$supplier->telp}}</td>
+                <td>{{$supplier->address}}, {{$supplier->village_name}}, {{$supplier->district_name}}, {{$supplier->regency_name}}, Prov. {{$supplier->province_name}}</td>
                 <td>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                 </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>PT Abadi Sejahtera</td>
-                <td>0821-4977-2111</td>
-                <td>Jl.Brawijaya 26, Kec.Pungging, Kab.Mojokerto, Jawa Timur</td>
-                <td>
-                    <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                </td>
-            </tr>
+          @endforeach
         </tbody>
     </table>
     </div>
@@ -70,80 +51,140 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-            <form>
-                <div class="card-body"> 
+        <form action="{{route('createSupplier')}}" method="post">
+          @csrf
+            <div class="modal-body">
+              <div class="card-body"> 
                     <div class="form-row">
                         <div class="form-group col-md-8">
                           <label for="sup_name">Nama Supplier</label>
-                          <input type="text" class="form-control" id="sup_name" placeholder="Nama Supplier">
+                          <input type="text" class="form-control" id="sup_name" name="name" placeholder="Nama Supplier">
+                          @error('name')
+                          <div class="text-danger mt-2">
+                              {{$message}}
+                          </div>
+                          @enderror
                         </div>
                         <div class="form-group col-md-4">
                           <label for="sup_no">No. Telepon</label>
-                          <input type="text" class="form-control" id="sup_no" placeholder="No. Telepon">
+                          <input type="text" class="form-control" id="sup_no" name="telp" placeholder="No. Telepon">
+                          @error('telp')
+                          <div class="text-danger mt-2">
+                              {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-md-8">
                           <label for="sup_addres">Alamat</label>
-                          <input type="text" class="form-control" id="sup_addres" placeholder="Alamat">
+                          <input type="text" class="form-control" id="sup_addres" name="address" placeholder="Alamat">
+                          @error('address')
+                          <div class="text-danger mt-2">
+                              {{$message}}
+                          </div>
+                      @enderror
                         </div>
                         <div class="form-group col-md-4">
-                          <label for="sup_desa">Desa/Dusun</label>
-                          <select class="form-control selectpicker" id="select-country" data-live-search="true">
-                            <option data-tokens="Jawa Timur">Jawa Timur</option>
-                            <option data-tokens="Jawa Barat">Jawa Barat</option>
-                            <option data-tokens="Jawa Tengah">Jawa Tengah</option>
-                            <option data-tokens="DKI Jakarta">DKI Jakarta</option>
-                            <option data-tokens="Banten">Banten</option>
+                          <label for="sup_desa">Provinsi</label>
+                          <select class="form-control selectpicker" id="province_id" data-live-search="true">
+                            <option value="" selected>Choose Province</option>
+                            @foreach ($provinsi as $item)
+                              <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                            
                           </select>
                         </div>
                       </div>
                       <div class="form-row">
-                        <div class="form-group col-md-4">
-                          <label for="sup_kec">Kecamatan</label>
-                          <select class="form-control selectpicker" id="select-country" data-live-search="true">
-                            <option data-tokens="Jawa Timur">Jawa Timur</option>
-                            <option data-tokens="Jawa Barat">Jawa Barat</option>
-                            <option data-tokens="Jawa Tengah">Jawa Tengah</option>
-                            <option data-tokens="DKI Jakarta">DKI Jakarta</option>
-                            <option data-tokens="Banten">Banten</option>
+                        <div class="form-group col-md-4" id="regency">
+                          <label for="sup_kec">Kota/kabupaten</label>
+                          <select class="form-control selectpicker" id="regency_id" data-live-search="true">
+                            <option value="" selected>Choose Regency</option>
                           </select>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="sup_kota">Kota/Kabupaten</label>
-                            <select class="form-control selectpicker" id="select-country" data-live-search="true">
-                              <option data-tokens="Jawa Timur">Jawa Timur</option>
-                              <option data-tokens="Jawa Barat">Jawa Barat</option>
-                              <option data-tokens="Jawa Tengah">Jawa Tengah</option>
-                              <option data-tokens="DKI Jakarta">DKI Jakarta</option>
-                              <option data-tokens="Banten">Banten</option>
+                            <label for="sup_kota">Kecamatan</label>
+                            <select class="form-control selectpicker" id="district_id" data-live-search="true">
+                              <option value="" selected>Choose District</option>
                             </select>
                           </div>
                           <div class="form-group col-md-4">
-                            <label for="sup_prov">Provinsi</label>
-                            <select class="form-control selectpicker" id="select-country" data-live-search="true">
-                              <option data-tokens="Jawa Timur">Jawa Timur</option>
-                              <option data-tokens="Jawa Barat">Jawa Barat</option>
-                              <option data-tokens="Jawa Tengah">Jawa Tengah</option>
-                              <option data-tokens="DKI Jakarta">DKI Jakarta</option>
-                              <option data-tokens="Banten">Banten</option>
+                            <label for="sup_prov">Desa</label>
+                            <select class="form-control selectpicker" id="village_id" name="village_id" data-live-search="true">
+                              <option value="" selected>Choose Village</option>
                             </select>
+                            @error('village_id')
+                            <div class="text-danger mt-2">
+                                {{$message}}
+                            </div>
+                        @enderror
                           </div>
                       </div>
                 </div>
-            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-dark">Tambah Supplier</button>
+          <button type="submit" class="btn btn-dark">Tambah Supplier</button>
         </div>
+      </form>
       </div>
     </div>
 </div>
 
 <!-- modal delete barang -->
-
-
 @endsection
 
+
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#province_id').change(function () {
+                var $regency = $('#regency_id');
+                $.ajax({
+                    url: "{{ route('getRegency') }}",
+                    data: {
+                        province_id: $(this).val()
+                    },
+                    success: function (data) {
+                        $regency.html('<option value="" selected>Choose Regency</option>');
+                        $.each(data, function (id, value) {
+                            $regency.append('<option value="' + id + '">' + value + '</option>');
+                        });
+                    }
+                });
+            });
+            $('#regency_id').change(function () {
+                var $district = $('#district_id');
+                $.ajax({
+                    url: "{{ route('getDistrict') }}",
+                    data: {
+                        regency_id: $(this).val()
+                    },
+                    success: function (data) {
+                        $district.html('<option value="" selected>Choose District</option>');
+                        $.each(data, function (id, value) {
+                            $district.append('<option value="' + id + '">' + value + '</option>');
+                        });
+                    }
+                });
+            });
+            $('#district_id').change(function () {
+                var $village = $('#village_id');
+                $.ajax({
+                    url: "{{ route('getVillage') }}",
+                    data: {
+                        district_id: $(this).val()
+                    },
+                    success: function (data) {
+                        $village.html('<option value="" selected>Choose Village</option>');
+                        $.each(data, function (id, value) {
+                            $village.append('<option value="' + id + '">' + value + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+@endsection
