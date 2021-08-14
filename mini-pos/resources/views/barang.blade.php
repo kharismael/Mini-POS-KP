@@ -52,7 +52,6 @@
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-paint-brush"></i></button>
                     <button type="button" class="btn btn-danger btn-sm btn-delete"
                       data-id="{{ $product['id'] }}"
-                      data-name="{{ $product['name'] }}"
                       data-toggle="modal"
                       data-target="#deleteModal">  
                     <i class="fa fa-trash"></i></button>
@@ -172,7 +171,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="#" id="delete-product-form" method="post">
+      <form action="" id="delete-product-form" method="post">
         <div class="modal-body">
                 @method('delete')
                 @csrf
@@ -180,7 +179,7 @@
         </div>
         <div class="modal-footer">
               <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
-              <button type="submit" class="btn btn-dark">Hapus Barang</button>
+              <button type="submit" class="btn btn-dark" value="delete">Hapus Barang</button>
         </div>
     </form>
     </div>
@@ -192,7 +191,7 @@
 @section('scripts')
   <script>
     $('.btn-delete').click(function()){
-        $('#delete-product-form').attr('action', '{{ route('deleteProduct','1')}}/' + $(self).data('id'))
+        $('#delete-product-form').attr('action', '{{ route('deleteProduct','')}}/' + $(self).data('id'))
         //$('#delete-product-name').val($(self).data('name'))
     })
   </script>

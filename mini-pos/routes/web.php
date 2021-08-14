@@ -40,9 +40,11 @@ Route::middleware('auth')->group(function(){ //Route untuk halaman yang wajib lo
     Route::view('/dashboard','dashboard');
     Route::view('/pembelian','pembelian');
     //Halaman Barang
-    Route::get('/barang', [ProductController::class, 'index']);
-    Route::post('/barang', [ProductController::class, 'store'])->name('createProduct');
-    Route::delete('/barang/{id}', [ProductController::class, 'delete'])->name('deleteProduct');
+    Route::resource('products',ProductController::class);
+    // Route::get('/product/index', [ProductController::class, 'index']);
+    // Route::post('/product/index', [ProductController::class, 'store'])->name('createProduct');
+    // Route::get('/product/index/{id}', [ProductController::class, 'destroy']);
+    // Route::post('/product/index/{id}', [ProductController::class, 'update'])->name('updateProduct');
 
     //Halaman Supplier
     Route::get('supplier',[SupplierController::class,'index']);
