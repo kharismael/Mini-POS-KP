@@ -3,13 +3,26 @@
                     
 @section('scripts')
 <script>
+    $('.profit-count').on('input',function(){
+        var price = document.getElementById('price').value;
+        price = parseFloat(price);
+        var cost = document.getElementById('cost').value;
+        cost = parseFloat(cost);
+        document.getElementById('profit_show').value = price - cost;
+        if(price < cost)
+             $('#profit_show').css("background-color","#f8b1b1")
+        else
+             $('#profit_show').css("background-color","#bcf8b1")
+    });
 
+    //keep modal if error
     @if($errors->has('name') || $errors->has('sku') || $errors->has('cost') || $errors->has('price'))
         $('#createModal').modal('show')
     @endif
 
+    //tutup alert jika timeout
     setTimeout(function() {
-        $('.alert').fadeOut('slow');}, 3000
+        $('.alert').fadeOut('slow');}, 5000
     );
 
     $('.btn-delete').click(function() {

@@ -58,7 +58,7 @@
                                     <div class="input-group-prepend">
                                       <span class="input-group-text">Rp</span>
                                     </div>
-                                    <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
+                                    <input type="text" class="profit-count form-control @error('price') is-invalid @enderror" id="price" name="price"
                                     value="{{old('price')}}">
                                     <div class="input-group-append">
                                       <span class="input-group-text">.00</span>
@@ -78,7 +78,7 @@
                                     <div class="input-group-prepend">
                                       <span class="input-group-text">Rp</span>
                                     </div>
-                                    <input type="text" class="form-control @error('cost') is-invalid @enderror" id="cost" name="cost"
+                                    <input type="text" class="profit-count form-control @error('cost') is-invalid @enderror" id="cost" name="cost"
                                     value="{{old('cost')}}">
                                     <div class="input-group-append">
                                       <span class="input-group-text">.00</span>
@@ -94,11 +94,11 @@
                         <div class="form-group row">
                             <label for="show_profit" class="col-sm-4 col-form-label">Keuntungan</label>
                             <div class="col-sm-7">
-                                <div class="input-group">
+                                <div class="input-group ">
                                     <div class="input-group-prepend">
                                       <span class="input-group-text">Rp</span>
                                     </div>
-                                    <input type="text" class="form-control" disabled="">
+                                    <input type="text" id="profit_show" class="form-control" disabled="">
                                     <div class="input-group-append">
                                       <span class="input-group-text">.00</span>
                                     </div>

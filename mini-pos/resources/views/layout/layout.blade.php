@@ -57,6 +57,13 @@
   .cl-custom-4{
     color: #521477 !important;
   }
+
+  .bg-form-success{
+    background-color: #bcf8b1 !important;
+  }
+  .bg-form-warning{
+    background-color: #f8b1b1 !important;
+  }
 </style>
 
 <body class="hold-transition sidebar-mini layout-fixed">
