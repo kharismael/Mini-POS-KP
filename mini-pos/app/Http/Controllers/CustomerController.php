@@ -44,12 +44,11 @@ class CustomerController extends Controller
      */
     public function create(Request $request)
     {
-        $customer = customer::all();
         request()->validate([
             'name' => ['required', 'string', 'min:3'],
             'telp' => ['required', 'digits_between:10,15'],
             'address' => ['required', 'string', 'min:3'],
-            'email' => 'unique:customers,email,',
+            'email' => 'required|unique:customers,email,',
             'village_id' => ['required', 'uuid'],
         ]);
 
