@@ -3,6 +3,8 @@
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -28,10 +30,6 @@ Route::view('/mutasi','mutasi');
 */
 
 
-Route::get('/', function () {
-    return view('auth.login');
-});
-
 //Route::get('/location',[LocationController::class,'show']);
 //Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
 
@@ -41,18 +39,26 @@ Route::middleware('auth')->group(function(){ //Route untuk halaman yang wajib lo
     Route::view('/','dashboard');
     Route::view('/dashboard','dashboard');
     Route::view('/pembelian','pembelian');
-    Route::view('/barang','barang');
-    Route::view('/outlet','outlet');
-    Route::view('/mutasi','mutasi');
+    //Halaman Barang
+    Route::resource('products',ProductController::class);
+    // Route::get('/product/index', [ProductController::class, 'index']);
+    // Route::post('/product/index', [ProductController::class, 'store'])->name('createProduct');
+    // Route::get('/product/index/{id}', [ProductController::class, 'destroy']);
+    // Route::post('/product/index/{id}', [ProductController::class, 'update'])->name('updateProduct');
 
+    //Halaman Supplier
     Route::get('supplier',[SupplierController::class,'index']);
     Route::post('supplier',[SupplierController::class,'create'])->name('createSupplier');
     Route::delete('supplier/{id}',[SupplierController::class,'delete']);
+
+    Route::view('/outlet','outlet');
+    Route::view('/mutasi','mutasi');
+
     Route::get('regency',[LocationController::class,'getRegency'])->name('getRegency');
     Route::get('district',[LocationController::class,'getDistrict'])->name('getDistrict');
     Route::get('village',[LocationController::class,'getVillage'])->name('getVillage');
     Route::view('/penjualan','penjualan');
-    Route::get('/customer', [App\Http\Controllers\CustomerController::class, 'index']);
+    Route::get('/customer', [CustomerController::class, 'index']);
 });
 
 Route::middleware('guest')->group(function () { //Route untuk halaman yang dilarang dikunjungi ketika user sudah login

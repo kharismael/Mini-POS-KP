@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Supplier;
 use App\Models\User;
 use App\Models\customer;
+use App\Models\product;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -19,23 +20,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::create([
-        //     'id' => (string) Str::uuid(),
-        //     'name' => 'Arief Test',
-        //     'username' => 'testlah',
-        //     'email' => 'test@google.com',
-        //     'password' => Hash::make('123456'),
-        //     'role' => 'admin',
-        //     'email_verified_at' => Carbon::now(),
-        // ]);
+        
+         User::create([
+             'id' => (string) Str::uuid(),
+             'name' => 'Arief Test',
+             'username' => 'testlah',
+             'email' => 'test@google.com',
+             'password' => Hash::make('123456'),
+             'role' => 'admin',
+             'email_verified_at' => Carbon::now(),
+         ]);
+         
+        customer::create([
+            'id' => (string) Str::uuid(),
+            'name' => 'Saya test',
+            'email' => 'saya@google.com',
+            'address' => 'Jl. makmur 119 Surabaya',
+            'telp' => '0819998653',
+        ]);
 
-        // Supplier::create([
-        //     'id'=>(string) Str::uuid(),
-        //     'name'=>'coba',
-        //     'telp'=>'83304923949',
-        //     'address'=>'asdjdfnjasd',
-        //     'village_id'=>'fe5a14d1-06ec-4e61-8462-83a0c7dd8b20',
-        // ]);
+        product::create([
+            'id' => (string) Str::uuid(),
+            'name' => 'Beras cap Lele',
+            'category' => 'Sembako',
+            'sku' => 'BRS-LELE',
+            'cost' => '104000',
+            'price' => '115000',
+        ]);
+        
+        
         Supplier::create([
             'id'=>(string) Str::uuid(),
             'name'=>'tesasd',
@@ -44,12 +57,12 @@ class DatabaseSeeder extends Seeder
             'village_id'=>'00007611-9128-4626-b1e7-7f2eda700590',
         ]);
 
-        customer::create([
-            'id' => (string) Str::uuid(),
-            'name' => 'Saya test',
-            'email' => 'saya@google.com',
-            'address' => 'Jl. makmur 119 Surabaya',
-            'telp' => '0819998653',
+        Supplier::create([
+            'id'=>(string) Str::uuid(),
+            'name'=>'coba',
+            'telp'=>'83304923949',
+           'address'=>'asdjdfnjasd',
+            'village_id'=>'fe5a14d1-06ec-4e61-8462-83a0c7dd8b20',
         ]);
     }
 }
