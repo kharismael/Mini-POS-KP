@@ -21,9 +21,14 @@ class SupplierController extends Controller
                         'telp',
                         'address',
                         'villages.name as village_name',
+                        'villages.id as village_id',
                         'districts.name as district_name',
+                        'districts.id as district_id',
                         'regencies.name as regency_name',
-                        'provinces.name as province_name')
+                        'regencies.id as regency_id',
+                        'provinces.name as province_name',
+                        'provinces.id as province_id',
+                        )
                     ->orderBy('suppliers.updated_at')
                     ->get();
 
@@ -53,6 +58,24 @@ class SupplierController extends Controller
     public function delete($id)
     {
         Supplier::where('id',$id)->first()->delete();
+
+        return back();
+    }
+
+    public function update(Request $request,$id)
+    {
+        request()->validate([
+            'name'=>['required','string','min:3'],
+            'telp'=>['required','digits_between:10,15'],
+            'address'=>['required','string','min:3'],
+            'village_id'=>['required','uuid'],
+        ]);
+
+        Supplier::where('id',$id)->update([            
+            'name'=>$request->name,
+            'telp'=>$request->telp,
+            'address'=>$request->address,
+            'village_id'=>$request->village_id,]);
 
         return back();
     }

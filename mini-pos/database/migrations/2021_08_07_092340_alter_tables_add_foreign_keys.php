@@ -41,10 +41,10 @@ class AlterTablesAddForeignKeys extends Migration
         //     $table->foreignUuid('sale_id')->constrained('sales');
         //     $table->foreignUuid('product_id')->constrained('products');
         // });
-        // Schema::table('purchases_products', function (Blueprint $table) {
-        //     $table->foreignUuid('purchases_id')->constrained('purchases');
-        //     $table->foreignUuid('product_id')->constrained('products');
-        // });
+        Schema::table('purchases_products', function (Blueprint $table) {
+            $table->foreignUuid('purchases_id')->constrained('purchases');
+            $table->foreignUuid('product_id')->constrained('products');
+        });
         // Schema::table('stocks', function (Blueprint $table) {
         //     $table->foreignUuid('product_id')->constrained('products');
         //     $table->foreignUuid('purchases_id')->constrained('purchases');

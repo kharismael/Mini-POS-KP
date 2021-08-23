@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -47,13 +48,16 @@ Route::middleware('auth')->group(function(){ //Route untuk halaman yang wajib lo
     // Route::post('/product/index/{id}', [ProductController::class, 'update'])->name('updateProduct');
 
     //Halaman Supplier
-    Route::get('supplier',[SupplierController::class,'index']);
-    Route::post('supplier',[SupplierController::class,'create'])->name('createSupplier');
-    Route::delete('supplier/{id}',[SupplierController::class,'delete']);
-
     Route::view('/outlet','outlet');
     Route::view('/mutasi','mutasi');
 
+    Route::get('pembelian',[PurchaseController::class,'index']);
+    Route::post('pembelian',[PurchaseController::class,'create'])->name('createPurchases');
+
+    Route::get('supplier',[SupplierController::class,'index']);
+    Route::post('supplier',[SupplierController::class,'create'])->name('createSupplier');
+    Route::delete('supplier/{id}',[SupplierController::class,'delete']);
+    Route::put('supplier/{id}',[SupplierController::class,'update'])->name('updateSupplier');
     Route::get('regency',[LocationController::class,'getRegency'])->name('getRegency');
     Route::get('district',[LocationController::class,'getDistrict'])->name('getDistrict');
     Route::get('village',[LocationController::class,'getVillage'])->name('getVillage');

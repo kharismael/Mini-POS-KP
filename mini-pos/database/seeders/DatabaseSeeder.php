@@ -21,23 +21,22 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         
-         User::create([
-             'id' => (string) Str::uuid(),
-             'name' => 'Arief Test',
-             'username' => 'testlah',
-             'email' => 'test@google.com',
-             'password' => Hash::make('123456'),
-             'role' => 'admin',
-             'email_verified_at' => Carbon::now(),
-         ]);
-         
-        customer::create([
+        User::create([
             'id' => (string) Str::uuid(),
-            'name' => 'Saya test',
-            'email' => 'saya@google.com',
-            'address' => 'Jl. makmur 119 Surabaya',
-            'telp' => '0819998653',
+            'name' => 'Arief Test',
+            'username' => 'testlah',
+            'email' => 'test@google.com',
+            'password' => Hash::make('123456'),
+            'role' => 'admin',
+            'email_verified_at' => Carbon::now(),
         ]);
+        // customer::create([
+        //     'id' => (string) Str::uuid(),
+        //     'name' => 'Saya test',
+        //     'email' => 'saya@google.com',
+        //     'address' => 'Jl. makmur 119 Surabaya',
+        //     'telp' => '0819998653',
+        // ]);
 
         product::create([
             'id' => (string) Str::uuid(),
@@ -61,7 +60,7 @@ class DatabaseSeeder extends Seeder
             'id'=>(string) Str::uuid(),
             'name'=>'coba',
             'telp'=>'83304923949',
-           'address'=>'asdjdfnjasd',
+            'address'=>'asdjdfnjasd',
             'village_id'=>'fe5a14d1-06ec-4e61-8462-83a0c7dd8b20',
         ]);
     }

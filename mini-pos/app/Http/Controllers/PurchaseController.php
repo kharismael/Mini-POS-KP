@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\product;
 use App\Models\purchase;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class PurchaseController extends Controller
 {
@@ -14,7 +18,11 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        //
+
+        $suppliers = Supplier::select('id','name')->get();
+        $products = product::all();
+        
+        return view('pembelian',compact('suppliers'),compact('products'));
     }
 
     /**
@@ -22,9 +30,29 @@ class PurchaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        dd($request);
+        request()->validate([
+            'invoice'=>['required','string','min:3'],
+            'transaction_date'=>['required'],
+        ]);
+
+        $date = Carbon::parse($request->date);
+
+        Supplier::create([
+            'id'=>(string) Str::uuid(),
+            'invoice'=>$request->invoice,
+            'transaction_date'=>$date,
+        ]);
+
+        $suppliers = Supplier::where('invoice',$request->invoice);
+
+        $suppliers->product()->attach($request->prodID,[
+            'quantity'=>$request->quantity,
+            'cost'=>$request->cost,
+        ]);
+        return back();
     }
 
     /**
