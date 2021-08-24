@@ -7,6 +7,7 @@ use App\Models\purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class PurchaseController extends Controller
@@ -20,9 +21,8 @@ class PurchaseController extends Controller
     {
 
         $suppliers = Supplier::select('id','name')->get();
-        $products = product::all();
         
-        return view('pembelian',compact('suppliers'),compact('products'));
+        return view('pembelian',compact('suppliers'));
     }
 
     /**
@@ -32,27 +32,23 @@ class PurchaseController extends Controller
      */
     public function create(Request $request)
     {
-        dd($request);
         request()->validate([
             'invoice'=>['required','string','min:3'],
-            'transaction_date'=>['required'],
+            'supplier_id'=>['required','UUID'],
+            'date'=>['required'],
         ]);
-
-        $date = Carbon::parse($request->date);
-
-        Supplier::create([
+        
+        $date = Carbon::createFromFormat('m/d/Y', $request->date);
+        purchase::create([
             'id'=>(string) Str::uuid(),
+            'supplier_id'=>$request->supplier_id,
             'invoice'=>$request->invoice,
+            'price_total'=>null,
             'transaction_date'=>$date,
         ]);
+        $purchase = purchase::where('invoice',$request->invoice)->first();
 
-        $suppliers = Supplier::where('invoice',$request->invoice);
-
-        $suppliers->product()->attach($request->prodID,[
-            'quantity'=>$request->quantity,
-            'cost'=>$request->cost,
-        ]);
-        return back();
+        return redirect('pembelian/'.$purchase->id);
     }
 
     /**
@@ -109,5 +105,52 @@ class PurchaseController extends Controller
     public function destroy(purchase $purchase)
     {
         //
+    }
+
+    public function purchases($id)
+    {
+        $products = product::all();
+
+        $purcprod= purchase::where('id',$id)->first()
+            ->purchase()
+            ->get()
+            ->map(function ($purcprod){
+                $total = $purcprod->pivot->cost * $purcprod->pivot->quantity;
+
+                return [
+                    'id' => $purcprod->pivot->id,
+                    'name' => $purcprod->name,
+                    'category' => $purcprod->category,
+                    'cost' => $purcprod->pivot->cost,
+                    'quantity' =>  $purcprod->pivot->quantity,
+                    'total' => $total,
+                ];
+            });
+        return view('purchasesproduct',compact('products','purcprod','id'));
+    }
+
+    public function purchaseStore($purchase_id,$product_id,Request $request)
+    {
+        request()->validate([
+            'cost'=>['required','numeric'],
+            'quantity'=>['required','integer'],
+        ]);
+
+        $purchase= purchase::where('id',$purchase_id)->first();
+        $purchase->purchase()->attach($product_id,[
+            'id'=>(string) Str::uuid(),
+            'quantity'=>$request->quantity,
+            'cost'=>$request->cost,
+        ]);
+
+
+        return back();
+    }
+
+    public function purchaseDelete($purchase_id,$pivot_id)
+    {
+        DB::table('purchases_products')->where('id',$pivot_id)->delete();
+        
+        return back();
     }
 }

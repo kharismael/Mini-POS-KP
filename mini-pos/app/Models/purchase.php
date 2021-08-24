@@ -17,10 +17,11 @@ class purchase extends Model
         'supplier_id',
         'invoice',
         'transaction_date',
+        'price_total'
     ];
 
     public function purchase()
     {
-        return $this->belongsToMany(product::class,'purchases_products','purchases_id','product_id');
+        return $this->belongsToMany(product::class,'purchases_products','purchases_id','product_id')->withTimestamps()->withPivot(['cost','quantity','id']);
     }
 }

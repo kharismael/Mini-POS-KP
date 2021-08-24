@@ -53,6 +53,9 @@ Route::middleware('auth')->group(function(){ //Route untuk halaman yang wajib lo
 
     Route::get('pembelian',[PurchaseController::class,'index']);
     Route::post('pembelian',[PurchaseController::class,'create'])->name('createPurchases');
+    Route::get('pembelian/{id}',[PurchaseController::class,'purchases']);
+    Route::post('pembelian/{purchase_id}/{product_id}',[PurchaseController::class,'purchaseStore']);
+    Route::delete('pembelian/{purchase_id}/{pivot_id}',[PurchaseController::class,'purchaseDelete']);
 
     Route::get('supplier',[SupplierController::class,'index']);
     Route::post('supplier',[SupplierController::class,'create'])->name('createSupplier');

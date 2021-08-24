@@ -19,7 +19,6 @@ class CreateSuppliersTable extends Migration
             $table->string('name');
             $table->string('telp');
             $table->string('address');
-            $table->foreignUuid('village_id')->constrained('villages');
             $table->timestamps();
         });
     }
