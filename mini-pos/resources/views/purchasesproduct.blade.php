@@ -27,7 +27,7 @@
                       <td>{{$loop->iteration}}</td>
                       <td>{{$product->name}}</td>
                       <td>{{$product->category}}</td>
-                      <form action="" method="post">
+                      <form action="/pembelian/{{$id}}/{{$product->id}}" method="post">
                         @csrf
                       <td><input type="text" class="form-control" id="cost" name="cost" value="{{$product->price}}"></td>
                       <td><input type="text" class="form-control" id="quantity" name="quantity" value="1"></td>
@@ -78,9 +78,14 @@
             </table>
         </div>
       <form action="/pembelian/{{$id}}/" method="POST" id="end-form">
-        @method('put')
         @csrf
         <button type="submit" class="btn btn-primary mb-4 mt-3">Selesai</button>
+      </form>
+
+      <form action="/pembelian/{{$id}}/" method="POST" id="end-form">
+        @method('delete')
+        @csrf
+        <button type="submit" class="btn btn-primary mb-4 mt-3">Batal</button>
       </form>
     </div>
   </div>

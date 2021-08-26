@@ -135,7 +135,6 @@ class PurchaseController extends Controller
             'cost'=>['required','numeric'],
             'quantity'=>['required','integer'],
         ]);
-
         $purchase= purchase::where('id',$purchase_id)->first();
         $purchase->purchase()->attach($product_id,[
             'id'=>(string) Str::uuid(),
@@ -152,5 +151,32 @@ class PurchaseController extends Controller
         DB::table('purchases_products')->where('id',$pivot_id)->delete();
         
         return back();
+    }
+
+    public function endpurchases($id)
+    {
+        $total = DB::table('purchases_products')
+            ->where('purchases_id',$id)
+            ->select(DB::raw('sum(quantity * cost) as sumTotal'))
+            ->get();
+        
+
+        purchase::where('id',$id)
+            ->update([
+                'price_total'=> $total[0]->sumTotal,
+            ]);
+        
+        return redirect('/pembelian');
+
+    }
+
+    public function deletePurchases($id)
+    {
+        $purc = purchase::where('id',$id)->first();
+       // dd($purc);
+        $purc->purchase()->detach();
+        $purc->delete();
+        
+        return redirect('/pembelian');
     }
 }
