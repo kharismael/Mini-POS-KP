@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\sale;
+use App\Models\customer;
+use App\Models\product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
 {
@@ -14,7 +19,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        $customer = customer::select('id', 'name')->get();
+        return view('sales.index', compact('customer'));
     }
 
     /**
@@ -22,9 +28,29 @@ class SaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        request()->validate([
+            'customer_id' => ['required', 'UUID'],
+            'date' => ['required'],
+        ]);
+
+        $date = Carbon::createFromFormat('m/d/Y', $request->date);
+        $Id = $request->customer_id;
+        $newID = substr($Id, -4);
+        $blt = date('m-Y');
+        $no_invoice = 'SL / ' . $blt . ' / ' . $newID;
+
+        sale::create([
+            'id' => (string) Str::uuid(),
+            'customer_id' => $request->customer_id,
+            'invoice' => $no_invoice,
+            'price_total' => null,
+            'transaction_date' => $date,
+        ]);
+        $sale = sale::where('invoice', $no_invoice)->first();
+
+        return redirect('penjualan/' . $sale->id);
     }
 
     /**
@@ -44,9 +70,10 @@ class SaleController extends Controller
      * @param  \App\Models\sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function show(sale $sale)
+    public function show()
     {
-        //
+        $sale = sale::all();
+        return view('mutasi.sales', compact('sale'));
     }
 
     /**
@@ -78,8 +105,74 @@ class SaleController extends Controller
      * @param  \App\Models\sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sale $sale)
+    public function destroy($sale_id, $pivot_id)
     {
-        //
+        DB::table('sales_products')->where('id', $pivot_id)->delete();
+        return back();
+    }
+
+    public function sales($id)
+    {
+        $products = product::all();
+        $saleprod = sale::where('id', $id)->first()
+            ->sale()
+            ->get()
+            ->map(function ($saleprod) {
+                $total = $saleprod->pivot->price * $saleprod->pivot->quantity;
+
+                return [
+                    'id' => $saleprod->pivot->id,
+                    'name' => $saleprod->name,
+                    'category' => $saleprod->category,
+                    'price' => $saleprod->pivot->price,
+                    'quantity' =>  $saleprod->pivot->quantity,
+                    'total' => $total,
+                ];
+            });
+        return view('sales.saleproduct', compact('products', 'saleprod', 'id'));
+    }
+
+    public function saleStore($sale_id, $product_id, Request $request)
+    {
+
+        request()->validate([
+            'price' => ['required', 'numeric'],
+            'quantity' => ['required', 'integer'],
+        ]);
+
+        $sale = sale::where('id', $sale_id)->first();
+        $sale->sale()->attach($product_id, [
+            'id' => (string) Str::uuid(),
+            'quantity' => $request->quantity,
+            'price' => $request->price,
+        ]);
+
+
+        return back();
+    }
+
+    public function endsales($id)
+    {
+        $total = DB::table('sales_products')
+            ->where('sale_id', $id)
+            ->select(DB::raw('sum(quantity * price) as sumTotal'))
+            ->get();
+
+        sale::where('id', $id)
+            ->update([
+                'price_total' => $total[0]->sumTotal,
+            ]);
+
+        return redirect('/penjualan');
+    }
+
+    public function deleteSales($id)
+    {
+        $sale = sale::where('id', $id)->first();
+        // dd($purc);
+        $sale->sale()->detach();
+        $sale->delete();
+
+        return redirect('/penjualan');
     }
 }

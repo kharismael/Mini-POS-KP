@@ -18,7 +18,7 @@ class CreateSalesTable extends Migration
             $table->primary('id');
             $table->string('invoice');
             $table->timestamp('transaction_date');
-            $table->integer('price_total');
+            $table->integer('price_total')->nullable();
             $table->timestamps();
         });
     }

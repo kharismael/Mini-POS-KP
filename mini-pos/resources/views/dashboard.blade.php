@@ -2,6 +2,9 @@
 
 @section('judul','Dashboard')
 
+@section('preloader')
+    @include('layout.preloader')
+@endsection
 
 @section('main_content')
 <section class="content">

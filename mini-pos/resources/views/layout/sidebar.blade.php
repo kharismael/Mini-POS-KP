@@ -80,7 +80,7 @@
 
           <li class="nav-header">GUDANG</li>
           <li class="nav-item">
-            <a href="/barang" class="nav-link">
+            <a href="{{url('products')}}" class="nav-link">
               <i class="nav-icon fas fa-dolly"></i>
               <p>
                 Barang

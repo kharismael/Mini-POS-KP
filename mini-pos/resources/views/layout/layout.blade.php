@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="{{asset('template')}}/plugins/summernote/summernote-bs4.min.css">
 
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+  
 
 </head>
 
@@ -56,15 +57,19 @@
   .cl-custom-4{
     color: #521477 !important;
   }
+
+  .bg-form-success{
+    background-color: #bcf8b1 !important;
+  }
+  .bg-form-warning{
+    background-color: #f8b1b1 !important;
+  }
 </style>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{asset('template')}}/img/AdminLTELogo.png" alt="AdminLTELogo" height="160" width="160">
-  </div>
+  @yield('preloader')
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -179,6 +184,7 @@
 
 <!-- jQuery -->
 <script src="{{asset('template')}}/plugins/jquery/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('template')}}/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

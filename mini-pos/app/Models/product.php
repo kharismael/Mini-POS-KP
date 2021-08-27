@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class product extends Model
 {
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'uuid';
+
     use HasFactory;
+    protected $fillable = ['id','name','category','sku','cost','price'];
+
+
+    public function product()
+    {
+        return $this->belongsToMany(purchase::class,'purchases_products','product_id','purchases_id');
+    }
 }
