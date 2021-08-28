@@ -38,8 +38,7 @@ class SaleController extends Controller
         $date = Carbon::createFromFormat('m/d/Y', $request->date);
         $Id = $request->customer_id;
         $newID = substr($Id, -4);
-        $blt = date('m-Y');
-        $no_invoice = 'SL / ' . $blt . ' / ' . $newID;
+        $no_invoice = 'SL / ' . $date->year . '-' . $date->month . ' / ' . $newID;
 
         sale::create([
             'id' => (string) Str::uuid(),

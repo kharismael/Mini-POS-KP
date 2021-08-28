@@ -3,6 +3,12 @@
 
 @section('judul','Penjualan')
 
+@if($errors->any())
+@else
+    @section('preloader')
+        @include('layout.preloader')
+    @endsection
+@endif
 
 @section('main_content')
 <section class="content">
