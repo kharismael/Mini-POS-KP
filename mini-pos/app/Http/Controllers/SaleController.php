@@ -48,7 +48,7 @@ class SaleController extends Controller
             'price_total' => null,
             'transaction_date' => $date,
         ]);
-        $sale = sale::where('invoice', $no_invoice)->first();
+        $sale = sale::where('invoice', $no_invoice)->latest()->first();
 
         return redirect('penjualan/' . $sale->id);
     }
@@ -72,7 +72,21 @@ class SaleController extends Controller
      */
     public function show()
     {
-        $sale = sale::all();
+        $sale = sale::join('sales_products', 'sale_id', '=', 'sales.id')
+            ->join('products', 'products.id', '=', 'sales_products.product_id')
+            ->orderBy('sales.transaction_date')
+            ->get()
+            ->map(function ($sale) {
+                $total = $sale->price * $sale->quantity;
+                return [
+                    'transaction_date' => $sale->transaction_date,
+                    'invoice' => $sale->invoice,
+                    'product_name' => $sale->name,
+                    'sku' => $sale->sku,
+                    'quantity' =>  $sale->quantity,
+                    'total' => $total
+                ];
+            });
         return view('mutasi.sales', compact('sale'));
     }
 

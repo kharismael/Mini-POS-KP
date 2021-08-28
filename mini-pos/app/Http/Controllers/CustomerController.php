@@ -34,7 +34,7 @@ class CustomerController extends Controller
             ->orderBy('customers.updated_at')
             ->get();
         $province = province::all();
-        return view('customer', compact('customer'), compact('province'));
+        return view('customer.index', compact('customer'), compact('province'));
     }
 
     /**
@@ -43,6 +43,16 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
+    {
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         request()->validate([
             'name' => ['required', 'string', 'min:3'],
@@ -61,16 +71,6 @@ class CustomerController extends Controller
             'village_id' => $request->village_id,
         ]);
         return back();
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
         //
     }
 

@@ -54,7 +54,12 @@ Route::middleware('auth')->group(function () { //Route untuk halaman yang wajib 
     Route::get('district', [LocationController::class, 'getDistrict'])->name('getDistrict');
     Route::get('village', [LocationController::class, 'getVillage'])->name('getVillage');
 
-    Route::get('/customer', [CustomerController::class]);
+    Route::resource('products', ProductController::class);
+    Route::resource('customer', CustomerController::class);
+    // Route::get('/customer', [CustomerController::class, 'index']);
+    // Route::post('customer', [CustomerController::class, 'create'])->name('createCustomer');
+    // Route::delete('{customer}', [CustomerController::class, 'destroy']);
+    // Route::get('/customer', [CustomerController::class]);
 
     Route::get('penjualan', [SaleController::class, 'index']);
     Route::post('penjualan', [SaleController::class, 'create'])->name('createSales');
@@ -71,8 +76,6 @@ Route::middleware('auth')->group(function () { //Route untuk halaman yang wajib 
     Route::delete('pembelian/{purchase_id}/{pivot_id}', [PurchaseController::class, 'purchaseDelete']);
     Route::delete('pembelian/{id}', [PurchaseController::class, 'deletePurchases']);
     Route::post('pembelian/{id}', [PurchaseController::class, 'endpurchases']);
-
-    Route::resource('products', ProductController::class);
 });
 
 Route::middleware('guest')->group(function () { //Route untuk halaman yang dilarang dikunjungi ketika user sudah login
