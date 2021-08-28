@@ -46,7 +46,7 @@ class PurchaseController extends Controller
             'price_total'=>null,
             'transaction_date'=>$date,
         ]);
-        $purchase = purchase::where('invoice',$request->invoice)->first();
+        $purchase = purchase::where('invoice',$request->invoice)->latest()->first();
 
         return redirect('pembelian/'.$purchase->id);
     }
