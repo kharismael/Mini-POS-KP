@@ -37,7 +37,6 @@ class PurchaseController extends Controller
             'supplier_id'=>['required','UUID'],
             'date'=>['required'],
         ]);
-        
         $date = Carbon::createFromFormat('m/d/Y', $request->date);
         purchase::create([
             'id'=>(string) Str::uuid(),
@@ -68,9 +67,25 @@ class PurchaseController extends Controller
      * @param  \App\Models\purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function show(purchase $purchase)
+    public function show()
     {
-        //
+        $purcprod= purchase::join('purchases_products','purchases_id','=','purchases.id')
+            ->join('products', 'products.id', '=', 'purchases_products.product_id')
+            ->orderBy('purchases.transaction_date')
+            ->get()
+            ->map(function ($purcprod){
+                $total = $purcprod->cost * $purcprod->quantity;
+
+                return [
+                    'transaction_date' => $purcprod->transction_date,
+                    'invoice' => $purcprod->invoice,
+                    'product_name' => $purcprod->name,
+                    'sku' => $purcprod->sku,
+                    'quantity' =>  $purcprod->quantity,
+                    'total' => $total,
+                ];
+            });
+        return view('mutasi.purchases',compact('purcprod'));
     }
 
     /**
