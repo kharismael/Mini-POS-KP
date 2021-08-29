@@ -31,8 +31,8 @@ class ProductController extends Controller
                 'profit_num' => $profitNum,
                 'price_num' => $priceNum,
             ];
-        });
-
+        });     
+        dd($products);
         return view('products/index', compact('products'));
     }
 
@@ -152,6 +152,8 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = product::find($id);
+        $product->purcprod()->detach();
+        $product->saleprod()->detach();
         $product->delete($product);
         return redirect()->back()->with('sukses','Data berhasil dihapus!');
     }
