@@ -18,55 +18,6 @@
         $('#edit-cust-district').val($(this).data('district_id'))
         $('#edit-cust-village').val($(this).data('village_id'))
     })
-
-        $(document).ready(function () {
-            $('#province_id').change(function () {
-                var $regency = $('#regency_id');
-                $.ajax({
-                    url: "{{ route('getRegency') }}",
-                    data: {
-                        province_id: $(this).val()
-                    },
-                    success: function (data) {
-                        $regency.html('<option value="" selected>Choose Regency</option>');
-                        $.each(data, function (id, value) {
-                            $regency.append('<option value="' + id + '">' + value + '</option>');
-                        });
-                    }
-                });
-            });
-            $('#regency_id').change(function () {
-                var $district = $('#district_id');
-                $.ajax({
-                    url: "{{ route('getDistrict') }}",
-                    data: {
-                        regency_id: $(this).val()
-                    },
-                    success: function (data) {
-                        $district.html('<option value="" selected>Choose District</option>');
-                        $.each(data, function (id, value) {
-                            $district.append('<option value="' + id + '">' + value + '</option>');
-                        });
-                    }
-                });
-            });
-            $('#district_id').change(function () {
-                var $village = $('#village_id');
-                $.ajax({
-                    url: "{{ route('getVillage') }}",
-                    data: {
-                        district_id: $(this).val()
-                    },
-                    success: function (data) {
-                        $village.html('<option value="" selected>Choose Village</option>');
-                        $.each(data, function (id, value) {
-                            $village.append('<option value="' + id + '">' + value + '</option>');
-                        });
-                    }
-                });
-            });
-        });
-    
         $(document).ready(function () {
             $('#province_id').change(function () {
                 var $regency = $('#regency_id');
