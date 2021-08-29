@@ -7,14 +7,14 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="#" id="delete-product-form" method="post">
+        <form action="#" id="delete-customer-form" method="post">
           <div class="modal-body">
                   @method('DELETE')
                   @csrf
                   <img src="{{asset('template')}}/img/confirmation.png" alt="confirmation" class="mx-auto d-block"><br>
                   <span class="text-center">Yakin menghapus item : </span>
                   <b><span class="text-center span-delete"></span></b>
-                  <span class="text-center"> ? <br> Data yang telah dihapus tidak akan dikembalikan lagi</span><br>
+                  <span class="text-center"> ? <br> Data yang telah dihapus tidak dapat dikembalikan lagi</span><br>
           </div>
           <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>

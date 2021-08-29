@@ -20,12 +20,11 @@
     });
   
     $('.btn-cancel').click(function() {
-    $('#cancel-sale-form').attr('action', '/penjualan/' + $(this).data('id'))
+    $('#cancel-purchases-form').attr('action', '/pembelian/' + $(this).data('id'))
     })
-    
+
     $('.btn-finish').click(function() {
-    $('#finish-sale-form').attr('action', '/penjualan/' + $(this).data('id'))
+    $('#finish-purchases-form').attr('action', '/pembelian/' + $(this).data('id'))
     })
 </script>
-
 @endsection

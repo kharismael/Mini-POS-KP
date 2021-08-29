@@ -1,6 +1,3 @@
-
-
-                    
 @section('scripts')
 <script>
     $('.profit-count').on('input',function(){

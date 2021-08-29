@@ -57,7 +57,6 @@
                             <div class="form-group col-md-4">
                               <label for="cust_prov">Provinsi</label>
                               <select class="form-control" name="province_id" id="update-data-prov" data-live-search="true">
-                                {{-- <option value="" selected>{{$cust->province_name}}</option> --}}
                                 @foreach ($province as $prov)
                                   <option 
                                         value="{{$prov->id}}">

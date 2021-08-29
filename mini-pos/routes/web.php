@@ -45,21 +45,18 @@ Route::middleware('auth')->group(function () { //Route untuk halaman yang wajib 
     Route::get('/mutasi/sales', [SaleController::class, 'show']);
     Route::get('/mutasi/purchases', [PurchaseController::class, 'show']);
 
-    Route::get('supplier', [SupplierController::class, 'index']);
-    Route::post('supplier', [SupplierController::class, 'create'])->name('createSupplier');
-    Route::delete('supplier/{id}', [SupplierController::class, 'delete']);
-    Route::put('supplier/{id}', [SupplierController::class, 'update'])->name('updateSupplier');
+    Route::resource('supplier', SupplierController::class);
+    // Route::post('supplier', [SupplierController::class, 'create'])->name('createSupplier');
+    // Route::delete('supplier/{id}', [SupplierController::class, 'delete'])->name('deleteSupplier');
+    // Route::put('supplier/{id}', [SupplierController::class, 'update'])->name('updateSupplier');
 
     Route::get('regency', [LocationController::class, 'getRegency'])->name('getRegency');
     Route::get('district', [LocationController::class, 'getDistrict'])->name('getDistrict');
     Route::get('village', [LocationController::class, 'getVillage'])->name('getVillage');
 
     Route::resource('products', ProductController::class);
+
     Route::resource('customer', CustomerController::class);
-    // Route::get('/customer', [CustomerController::class, 'index']);
-    // Route::post('customer', [CustomerController::class, 'create'])->name('createCustomer');
-    // Route::delete('{customer}', [CustomerController::class, 'destroy']);
-    // Route::get('/customer', [CustomerController::class]);
 
     Route::get('penjualan', [SaleController::class, 'index']);
     Route::post('penjualan', [SaleController::class, 'create'])->name('createSales');

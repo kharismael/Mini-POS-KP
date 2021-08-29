@@ -3,12 +3,12 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Tambah Daftar Supplier</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Update Supplier</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="#" method="post" id="edit-supplier-form">
+        <form action="#" method="post" id="edit-sup-form">
           @csrf
           @method('put')
             <div class="modal-body">
@@ -44,8 +44,8 @@
                           @enderror
                         </div>
                         <div class="form-group col-md-4">
-                          <label for="sup_desa">Provinsi</label>
-                          <select class="form-control selectpicker" id="update_province_id" data-live-search="true">
+                          <label for="sup_prov">Provinsi</label>
+                          <select class="form-control selectpicker" id="update-data-prov" data-live-search="true">
                             <option value="" selected>Choose Province</option>
                             @foreach ($provinsi as $item)
                               <option value="{{$item->id}}" >{{$item->name}}</option>
@@ -56,20 +56,20 @@
                       </div>
                       <div class="form-row">
                         <div class="form-group col-md-4">
-                          <label for="sup_kec">Kota/kabupaten</label>
-                          <select class="form-control selectpicker" id="update_regency_id" data-live-search="true">
+                          <label for="sup_kota">Kota/kabupaten</label>
+                          <select class="form-control selectpicker" id="update-data-regency" data-live-search="true">
                             <option value="" selected>Choose Regency</option>
                           </select>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="sup_kota">Kecamatan</label>
-                            <select class="form-control selectpicker" id="update_district_id" data-live-search="true">
+                            <label for="sup_kec">Kecamatan</label>
+                            <select class="form-control selectpicker" id="uupdate-data-district" data-live-search="true">
                               <option value="" selected>Choose District</option>
                             </select>
                           </div>
                           <div class="form-group col-md-4">
-                            <label for="sup_prov">Desa</label>
-                            <select class="form-control selectpicker" id="update_village_id" name="village_id" data-live-search="true">
+                            <label for="sup_desa">Desa</label>
+                            <select class="form-control selectpicker" id="update-data-village" name="village_id" data-live-search="true">
                               <option value="" selected>Choose Village</option>
                             </select>
                             @error('village_id')

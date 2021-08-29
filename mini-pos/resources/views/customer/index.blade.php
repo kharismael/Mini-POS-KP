@@ -79,7 +79,7 @@
 </div>
 </section>
 
-<!-- modal tambah barang -->
+{{-- CRUD Customer --}}
 @include('customer.delete')
 @include('customer.create')
 @include('customer.update')

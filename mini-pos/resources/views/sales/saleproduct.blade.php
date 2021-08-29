@@ -76,36 +76,18 @@
                 </tbody>
             </table>
         </div>
-        <form action="/penjualan/{{$id}}/" method="POST" id="end-form">
-          @csrf
-          <button type="submit" class="btn btn-primary mb-4 mt-3">Selesai</button>
-        </form>
-  
-        <form action="/penjualan/{{$id}}/" method="POST" id="end-form">
-          @method('delete')
-          @csrf
-          <button type="submit" class="btn btn-primary mb-4 mt-3">Batal</button>
-        </form>
+          <button type="button" class="btn btn-primary mb-4 mt-3 btn-finish"
+            data-id="{{ $id }}"
+            data-toggle="modal" data-target="#finishModal"
+            >Finish</button>
+          <button type="button" class="btn btn-danger mb-4 mt-3 btn-cancel"
+            data-id="{{ $id }}"
+            data-toggle="modal" data-target="#cancelModal"
+            >Cancel</button>
       </div>
     </div>
   </div>
+@include('sales.cancel')
+@include('sales.finish')
+@include('sales.script')
 @endsection
-
-@section('scripts')
-<script>
-    $(document).ready(function(){
-      var tds = document.getElementById('count-it').getElementsByClassName('count-me');
-      var sum = 0;
-      for(var i = 0; i < tds.length; i ++) {
-        if(tds[i].className == 'count-me') {
-          sum += isNaN(tds[i].innerHTML) ? 0 : parseInt(tds[i].innerHTML);
-        }
-      }
-      document.getElementById('count-foot').innerHTML += '<tr><th></h><th></h><th></h><th></h><th>Total</h><th>' + sum + '</th><th></h></tr>';
-      $('#end-form').attr('action','/penjualan/{{$id}}/?total='+sum)
-    });
-  </script>
-
-@endsection
-  
-

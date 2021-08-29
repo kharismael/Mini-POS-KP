@@ -17,7 +17,7 @@ class CreatePurchasesTable extends Migration
             $table->uuid('id');
             $table->primary('id');
             $table->string('invoice');
-            $table->timestamp('transaction_date');
+            $table->date('transaction_date');
             $table->integer('price_total')->nullable();
             $table->timestamps();
         });

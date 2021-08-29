@@ -34,11 +34,7 @@
                 <td>{{$supplier->telp}}</td>
                 <td>{{$supplier->address}}, {{$supplier->village_name}}, {{$supplier->district_name}}, {{$supplier->regency_name}}, Prov. {{$supplier->province_name}}</td>
                 <td>
-                    <button 
-                      type="button" 
-                      class="btn btn-warning btn-sm btn-edit" 
-                      data-toggle="modal" 
-                      data-target="#UpdateModalCenter"
+                    <a href="#" type="button" class="btn btn-warning btn-sm btn-edit"
                       data-supplier_id="{{ $supplier->id}}"
                       data-supplier_name="{{ $supplier->supplier_name}}"
                       data-supplier_telp="{{ $supplier->telp}}"
@@ -51,12 +47,14 @@
                       data-regency_id="{{ $supplier->regency_id}}"
                       data-province_name="{{ $supplier->province_name}}"
                       data-province_id="{{ $supplier->province_id}}"
-                      ><i class="fa fa-paint-brush"></i></button>
-                    <form action="/supplier/{{$supplier->id}}" method="post">
-                      @method("delete")
-                      @csrf
-                      <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                    </form>
+                      data-toggle="modal" data-target="#UpdateModalCenter"
+                      ><i class="fa fa-paint-brush"></i> Edit</a>
+
+                    <a href="#" type="button" class="btn btn-danger btn-sm btn-delete"
+                      data-id="{{ $supplier->id }}"
+                      data-name="{{ $supplier->supplier_name }}"
+                      data-toggle="modal" data-target="#deleteSup"
+                    ><i class="fa fa-trash"></i> Delete</a>
                     </td>
             </tr>
           @endforeach
@@ -70,8 +68,9 @@
 <!-- modal delete barang -->
 
 
-<!-- modal Update Supplier -->
-@endsection
+{{-- CRUD Supplier --}}
 @include('supplier.create')
 @include('supplier.update')
+@include('supplier.delete')
 @include('supplier.script')
+@endsection

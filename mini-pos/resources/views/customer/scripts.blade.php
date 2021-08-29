@@ -3,12 +3,10 @@
     setTimeout(function() {
         $('.alert').fadeOut('slow');}, 3000
     );
-
     $('.btn-delete').click(function() {
-        $('#delete-product-form').attr('action', '{{ route('customer.destroy', '') }}/' + $(this).data('id'))
+        $('#delete-customer-form').attr('action', '{{ route('customer.destroy', '') }}/' + $(this).data('id'))
         $('.span-delete').text($(this).data('name'));
     })
-
     $('.btn-edit').click(function() {
         $('#edit-cust-form').attr('action', '{{ route('customer.update', '') }}/' + $(this).data('cust_id'))
         $('#edit-cust-name').val($(this).data('cust_name'))
@@ -20,10 +18,7 @@
         $('#edit-cust-district').val($(this).data('district_id'))
         $('#edit-cust-village').val($(this).data('village_id'))
     })
-</script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
         $(document).ready(function () {
             $('#province_id').change(function () {
                 var $regency = $('#regency_id');
@@ -71,10 +66,7 @@
                 });
             });
         });
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
+    
         $(document).ready(function () {
             $('#province_id').change(function () {
                 var $regency = $('#regency_id');
@@ -134,7 +126,7 @@
                   province_id: $(this).val()
               },
               success: function (data) {
-                  $regency.html('<option value="{{$cust->regency_id}}" selected>{{$cust->regency_name}}</option>');
+                  $regency.html;
                   $.each(data, function (id, value) {
                       $regency.append('<option value="' + id + '">' + value + '</option>');
                   });

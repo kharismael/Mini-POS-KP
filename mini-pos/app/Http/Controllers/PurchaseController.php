@@ -22,7 +22,7 @@ class PurchaseController extends Controller
 
         $suppliers = Supplier::select('id', 'name')->get();
 
-        return view('pembelian', compact('suppliers'));
+        return view('purchases.index', compact('suppliers'));
     }
 
     /**
@@ -70,7 +70,23 @@ class PurchaseController extends Controller
      */
     public function show()
     {
-        return view('mutasi.purchases');
+        $purcprod = purchase::join('purchases_products', 'purchases_id', '=', 'purchases.id')
+            ->join('products', 'products.id', '=', 'purchases_products.product_id')
+            ->orderBy('purchases.transaction_date')
+            ->get()
+            ->map(function ($purcprod) {
+                $total = $purcprod->cost * $purcprod->quantity;
+
+                return [
+                    'transaction_date' => $purcprod->transaction_date,
+                    'invoice' => $purcprod->invoice,
+                    'product_name' => $purcprod->name,
+                    'sku' => $purcprod->sku,
+                    'quantity' =>  $purcprod->quantity,
+                    'total' => $total,
+                ];
+            });
+        return view('mutasi.purchases', compact('purcprod'));
     }
 
     /**
@@ -126,7 +142,7 @@ class PurchaseController extends Controller
                     'total' => $total,
                 ];
             });
-        return view('purchasesproduct', compact('products', 'purcprod', 'id'));
+        return view('purchases.purchasesproduct', compact('products', 'purcprod', 'id'));
     }
 
     public function purchaseStore($purchase_id, $product_id, Request $request)

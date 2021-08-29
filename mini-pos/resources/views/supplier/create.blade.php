@@ -9,7 +9,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{route('createSupplier')}}" method="post">
+        <form action="{{route('supplier.create')}}" method="post">
           @csrf
             <div class="modal-body">
               <div class="card-body"> 

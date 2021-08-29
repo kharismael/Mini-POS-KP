@@ -36,14 +36,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'coba',
             'telp' => '83304923949',
             'address' => 'asdjdfnjasd',
-            'village_id' => 'fe5a14d1-06ec-4e61-8462-83a0c7dd8b20',
+            'village_id' => '0baabea0-9282-4150-b72e-84c7b8580892',
         ]);
         Supplier::create([
             'id' => (string) Str::uuid(),
             'name' => 'tesasd',
             'telp' => '23949829432',
             'address' => 'dfjnjvlafd',
-            'village_id' => '00007611-9128-4626-b1e7-7f2eda700590',
+            'village_id' => '0bab70b0-0ff1-4854-8ccf-80c99de9671c',
         ]);
 
         customer::create([

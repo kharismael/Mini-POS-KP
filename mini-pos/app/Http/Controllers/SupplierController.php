@@ -55,11 +55,10 @@ class SupplierController extends Controller
         return back();
     }
 
-    public function delete($id)
+    public function destroy(supplier $supplier)
     {
-        Supplier::where('id', $id)->first()->delete();
-
-        return back();
+        supplier::destroy($supplier->id);
+        return redirect('supplier')->with('status', 'Supplier berhasil dihapus');
     }
 
     public function update(Request $request, $id)
