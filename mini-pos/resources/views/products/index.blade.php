@@ -69,7 +69,7 @@
                 <td>{{ $product['sku'] }}</td>
                 <td>{{ $product['name'] }}</td>
                 <td>{{ $product['category'] }}</td>
-                <td>0</td>
+                <td>{{ $product['quantity'] }}</td>
                 <td>Rp. {{ $product['price_num'] }}</td>
                 <td><span class="badge badge-success"> Rp.{{ $product['profit_num'] }}</span></td>
                 <td>

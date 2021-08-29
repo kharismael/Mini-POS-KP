@@ -17,7 +17,7 @@ class ProductController extends Controller
             $profit = $product->price - $product->cost;
             $profitNum = number_format($profit,"2",",",".");
             $priceNum = number_format($product->price,"2",",",".");
-
+            $quantity = $product->purcprod()->sum('quantity') - $product->saleprod()->sum('quantity');
             //$supplierName = $product->supplier_id ? $product->supplier->name : NULL;
 
             return [
@@ -26,6 +26,7 @@ class ProductController extends Controller
                 'sku' => $product->sku,
                 'category' => $product->category,
                 'cost' => $product->cost,
+                'quantity'=> $quantity,
                 'price' => $product->price,
                 'profit_num' => $profitNum,
                 'price_num' => $priceNum,

@@ -15,8 +15,12 @@ class product extends Model
     protected $fillable = ['id','name','category','sku','cost','price'];
 
 
-    public function product()
+    public function purcprod()
     {
         return $this->belongsToMany(purchase::class,'purchases_products','product_id','purchases_id');
+    }
+    public function saleprod()
+    {
+        return $this->belongsToMany(sale::class,'sales_products','product_id','sale_id');
     }
 }
