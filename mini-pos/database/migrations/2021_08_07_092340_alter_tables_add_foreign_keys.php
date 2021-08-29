@@ -32,18 +32,18 @@ class AlterTablesAddForeignKeys extends Migration
         //     $table->foreignUuid('supplier_id')->constrained('suppliers');
         // });
         Schema::table('sales', function (Blueprint $table) {
-            $table->foreignUuid('customer_id')->constrained('customers');
+            $table->foreignUuid('customer_id')->constrained('customers')->onDelete('cascade')->onUpdate('cascade');
         });
         Schema::table('purchases', function (Blueprint $table) {
-            $table->foreignUuid('supplier_id')->constrained('suppliers');
+            $table->foreignUuid('supplier_id')->constrained('suppliers')->onDelete('cascade')->onUpdate('cascade');
         });
         Schema::table('sales_products', function (Blueprint $table) {
-            $table->foreignUuid('sale_id')->constrained('sales');
-            $table->foreignUuid('product_id')->constrained('products');
+            $table->foreignUuid('sale_id')->constrained('sales')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignUuid('product_id')->constrained('products')->onDelete('cascade')->onUpdate('cascade');
         });
         Schema::table('purchases_products', function (Blueprint $table) {
-            $table->foreignUuid('purchases_id')->constrained('purchases');
-            $table->foreignUuid('product_id')->constrained('products');
+            $table->foreignUuid('purchases_id')->constrained('purchases')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignUuid('product_id')->constrained('products')->onDelete('cascade')->onUpdate('cascade');
         });
         Schema::table('stocks', function (Blueprint $table) {
             $table->foreignUuid('product_id')->constrained('products');
